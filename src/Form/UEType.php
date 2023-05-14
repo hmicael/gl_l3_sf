@@ -6,6 +6,7 @@ use App\Entity\UE;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UEType extends AbstractType
 {
@@ -17,7 +18,12 @@ class UEType extends AbstractType
             ->add('nbStudent')
             ->add('nbGroup')
             ->add('constraintsApplied')
-            ->add('semester')
+            ->add('semester', ChoiceType::class, [
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                ],
+            ])
             ->add('filiere')
         ;
     }

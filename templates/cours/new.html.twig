@@ -3,9 +3,13 @@
 {% block title %}New Cours{% endblock %}
 
 {% block body %}
-    <h1>Create new Cours</h1>
+    <section class="col-md-6 align-center">
+        <h1>Create new Cours</h1>
 
-    {{ include('cours/_form.html.twig') }}
+        {{ include('cours/_form.html.twig') }}
 
-    <a href="{{ path('app_cours_index') }}" class="mt-3 btn btn-outline-secondary"><i class="fa-solid fa-arrow-left"></i> Back to list</a>
+        <a href="{{ path('app_cours_index') }}" class="mt-3 btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Back to list
+        </a>
+    </section>
 {% endblock %}

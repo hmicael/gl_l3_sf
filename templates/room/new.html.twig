@@ -3,11 +3,11 @@
 {% block title %}New Room{% endblock %}
 
 {% block body %}
-    <h1>Create new Room</h1>
-
-    {{ include('room/_form.html.twig') }}
-
-    <a href="{{ path('app_room_index') }}" class="btn btn-outline-secondary">
-        <i class="fa-solid fa-arrow-left"></i> Retour &agrave; la liste
-    </a>
+    <section class="form-card col-md-4">
+        <h1>Create new Room</h1>
+        {{ include('room/_form.html.twig') }}
+        <a href="{{ path('app_room_index') }}" class="mt-3 btn btn-outline-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Back to list
+        </a>
+    </section>
 {% endblock %}

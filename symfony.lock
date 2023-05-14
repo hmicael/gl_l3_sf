@@ -35,6 +35,30 @@
             "migrations/.gitignore"
         ]
     },
+    "ecphp/cas-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.0",
+            "ref": "11ab180a0614a2cf2c76a732f719a04484f2ad74"
+        }
+    },
+    "loophp/psr-http-message-bridge-bundle": {
+        "version": "1.0.0"
+    },
+    "nyholm/psr7": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "0cd4d2d0e7f646fda75f9944f747a56e6ed13d4c"
+        },
+        "files": [
+            "config/packages/nyholm_psr7.yaml"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

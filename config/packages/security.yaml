@@ -9,8 +9,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        # this firewall is going to require to login for the /secured path
+        secured:
+            provider: cas
+            pattern: ^/secured
+            custom_authenticator: EcPhp\CasBundle\Security\CasAuthenticator
+            form_login:
+                check_path: cas_bundle_login
+                login_path: cas_bundle_login
+            entry_point: EcPhp\CasBundle\Security\CasAuthenticator    
         main:
-            lazy: true
+            # lazy: true
             provider: users_in_memory
 
             # activate different ways to authenticate
@@ -22,6 +31,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/cas, roles: PUBLIC_ACCESS }
+        - { path: ^/secured, roles: ROLE_CAS_AUTHENTICATED }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

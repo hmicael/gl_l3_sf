@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "770aaee311d7326105e8adbda59979ba",
+    "content-hash": "edd39d1464c73af5d944accdf5e1b50d",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1392,6 +1392,148 @@
             "time": "2022-05-23T21:33:49+00:00"
         },
         {
+            "name": "ecphp/cas-bundle",
+            "version": "2.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ecphp/cas-bundle.git",
+                "reference": "7422f89fca32dc990a831be41fa9dbb56bbec57c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ecphp/cas-bundle/zipball/7422f89fca32dc990a831be41fa9dbb56bbec57c",
+                "reference": "7422f89fca32dc990a831be41fa9dbb56bbec57c",
+                "shasum": ""
+            },
+            "require": {
+                "ecphp/cas-lib": "1.1.*",
+                "ext-filter": "*",
+                "ext-json": "*",
+                "ext-simplexml": "*",
+                "loophp/psr-http-message-bridge-bundle": "^1.0",
+                "php": ">= 8.0.2",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0",
+                "symfony/framework-bundle": "^6.0"
+            },
+            "require-dev": {
+                "ecphp/php-conventions": "^1",
+                "ext-pcov": "*",
+                "friends-of-phpspec/phpspec-code-coverage": "^6",
+                "infection/infection": "^0.26",
+                "infection/phpspec-adapter": "^0.2",
+                "loophp/unaltered-psr-http-message-bridge-bundle": "^2.0",
+                "nyholm/psr7": "^1.2",
+                "phpspec/phpspec": "^7",
+                "phpstan/phpstan-symfony": "^1.1",
+                "symfony/cache": "^6.0",
+                "symfony/dependency-injection": "^6.0",
+                "symfony/http-client": "^6.0",
+                "symfony/monolog-bundle": "^3.5",
+                "symfony/routing": "^6.0",
+                "symfony/security-bundle": "^6.0"
+            },
+            "suggest": {
+                "loophp/unaltered-psr-http-message-bridge-bundle": "A drop-in replacement for symfony/psr-http-message-bridge, that does not alter query parameters.",
+                "nyholm/psr7": "For a super lightweight PSR-7/17 implementation",
+                "nyholm/psr7-server": "For a PSR-7 implementation of Server Requests.",
+                "symfony/cache": "For a cache implementation (PSR-6).",
+                "symfony/http-client": "For an HTTP client implementation (PSR-18).",
+                "symfony/monolog-bundle": "For a logger implementation (PSR-3)."
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "EcPhp\\CasBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A bundle for Symfony 5 & 6, providing authentication against a Central Authentication Service (CAS) server.",
+            "keywords": [
+                "Authentication",
+                "SSO",
+                "cas",
+                "central authentication service",
+                "single sign-on"
+            ],
+            "support": {
+                "issues": "https://github.com/ecphp/cas-bundle/issues",
+                "source": "https://github.com/ecphp/cas-bundle/tree/2.5.5"
+            },
+            "time": "2023-03-01T14:01:13+00:00"
+        },
+        {
+            "name": "ecphp/cas-lib",
+            "version": "1.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ecphp/cas-lib.git",
+                "reference": "643b216c7461a62aebb1389cbc4741b22089e589"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ecphp/cas-lib/zipball/643b216c7461a62aebb1389cbc4741b22089e589",
+                "reference": "643b216c7461a62aebb1389cbc4741b22089e589",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
+                "league/uri-components": "^2",
+                "openlss/lib-array2xml": "^1.0",
+                "php": ">= 7.4",
+                "psr/cache": "^1.0.1 || ^2 || ^3",
+                "psr/http-client": "^1.0",
+                "psr/http-client-implementation": "^1",
+                "psr/http-factory": "^1.0.1",
+                "psr/http-factory-implementation": "^1",
+                "psr/http-message": "^1.0",
+                "psr/http-message-implementation": "^1",
+                "psr/log": "^1.1 || ^2 || ^3"
+            },
+            "require-dev": {
+                "ecphp/php-conventions": "^1",
+                "ext-xdebug": "*",
+                "friends-of-phpspec/phpspec-code-coverage": "^6.0.0",
+                "infection/infection": "^0.23 || ^0.24",
+                "infection/phpspec-adapter": "^0.1.2",
+                "monolog/monolog": "^1.0 || ^2.0",
+                "nyholm/psr7": "^1.4",
+                "nyholm/psr7-server": "^1.0.0",
+                "phpspec/phpspec": "^7",
+                "phpstan/phpstan-strict-rules": "^0.12 || ^1.0",
+                "symfony/cache": "^5.2",
+                "symfony/http-client": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EcPhp\\CasLib\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "CAS Lib, a standard library for CAS authentication.",
+            "keywords": [
+                "Authentication",
+                "cas",
+                "psr",
+                "single-sign-on"
+            ],
+            "support": {
+                "issues": "https://github.com/ecphp/cas-lib/issues",
+                "source": "https://github.com/ecphp/cas-lib/tree/1.1.9"
+            },
+            "time": "2022-05-02T11:06:38+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "4.0.1",
             "source": {
@@ -1457,6 +1599,235 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "league/uri-components",
+            "version": "2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/uri-components.git",
+                "reference": "06f49e726a7fd06063e80f5f8b045fb9128e6c43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/uri-components/zipball/06f49e726a7fd06063e80f5f8b045fb9128e6c43",
+                "reference": "06f49e726a7fd06063e80f5f8b045fb9128e6c43",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/uri-interfaces": "^2.3",
+                "php": "^7.4 || ^8.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^v3.8.0",
+                "guzzlehttp/psr7": "^2.2",
+                "laminas/laminas-diactoros": "^2.11.0",
+                "league/uri": "^6.0",
+                "phpstan/phpstan": "^1.7",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.2",
+                "phpunit/phpunit": "^9.5.20"
+            },
+            "suggest": {
+                "ext-fileinfo": "Needed to create Data URI from a filepath",
+                "ext-gmp": "to improve handle IPV4 parsing",
+                "ext-intl": "to handle IDN host",
+                "jeremykendall/php-domain-parser": "Public Suffix and Top Level Domain parsing implemented in PHP",
+                "league/uri": "to allow manipulating URI objects",
+                "php-64bit": "to improve handle IPV4 parsing",
+                "psr/http-message-implementation": "to allow manipulating PSR-7 Uri objects"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Uri\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
+                }
+            ],
+            "description": "URI components manipulation library",
+            "homepage": "http://uri.thephpleague.com",
+            "keywords": [
+                "authority",
+                "components",
+                "fragment",
+                "host",
+                "path",
+                "port",
+                "query",
+                "rfc3986",
+                "scheme",
+                "uri",
+                "url",
+                "userinfo"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/uri-components/issues",
+                "source": "https://github.com/thephpleague/uri-components/tree/2.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/nyamsprod",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-26T05:50:46+00:00"
+        },
+        {
+            "name": "league/uri-interfaces",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/uri-interfaces.git",
+                "reference": "00e7e2943f76d8cb50c7dfdc2f6dee356e15e383"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/uri-interfaces/zipball/00e7e2943f76d8cb50c7dfdc2f6dee356e15e383",
+                "reference": "00e7e2943f76d8cb50c7dfdc2f6dee356e15e383",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.19",
+                "phpstan/phpstan": "^0.12.90",
+                "phpstan/phpstan-phpunit": "^0.12.19",
+                "phpstan/phpstan-strict-rules": "^0.12.9",
+                "phpunit/phpunit": "^8.5.15 || ^9.5"
+            },
+            "suggest": {
+                "ext-intl": "to use the IDNA feature",
+                "symfony/intl": "to use the IDNA feature via Symfony Polyfill"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Uri\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignace Nyamagana Butera",
+                    "email": "nyamsprod@gmail.com",
+                    "homepage": "https://nyamsprod.com"
+                }
+            ],
+            "description": "Common interface for URI representation",
+            "homepage": "http://github.com/thephpleague/uri-interfaces",
+            "keywords": [
+                "rfc3986",
+                "rfc3987",
+                "uri",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/uri-interfaces/issues",
+                "source": "https://github.com/thephpleague/uri-interfaces/tree/2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/nyamsprod",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-06-28T04:27:21+00:00"
+        },
+        {
+            "name": "loophp/psr-http-message-bridge-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loophp/psr-http-message-bridge-bundle.git",
+                "reference": "ae719550b3919846cd1d8c072a5b1d98e4925180"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loophp/psr-http-message-bridge-bundle/zipball/ae719550b3919846cd1d8c072a5b1d98e4925180",
+                "reference": "ae719550b3919846cd1d8c072a5b1d98e4925180",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.3",
+                "symfony/psr-http-message-bridge": "^1 || ^2"
+            },
+            "require-dev": {
+                "drupol/php-conventions": "^5",
+                "friends-of-phpspec/phpspec-code-coverage": "^6",
+                "infection/infection": "^0.23",
+                "infection/phpspec-adapter": "^0.1.1",
+                "phpspec/phpspec": "^7.1",
+                "symfony/framework-bundle": "^5.3",
+                "symfony/http-kernel": "^5.1.6"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "loophp\\PsrHttpMessageBridgeBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pol Dellaiera",
+                    "email": "pol.dellaiera@protonmail.com"
+                }
+            ],
+            "description": "Register symfony/psr-http-message-bridge classes in your Symfony application.",
+            "homepage": "http://github.com/loophp/psr-http-message-bridge-bundle",
+            "keywords": [
+                "http",
+                "psr-17",
+                "psr-7",
+                "psr-http-message-bridge",
+                "symfony-bundle"
+            ],
+            "support": {
+                "issues": "https://github.com/loophp/psr-http-message-bridge-bundle/issues",
+                "source": "https://github.com/loophp/psr-http-message-bridge-bundle/tree/1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/drupol",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/drupol",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-21T20:28:53+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1558,6 +1929,191 @@
                 }
             ],
             "time": "2023-02-06T13:46:10+00:00"
+        },
+        {
+            "name": "nyholm/psr7",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/psr7.git",
+                "reference": "bf4aebd170fadf5fd808c70b90535de327e81a50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/bf4aebd170fadf5fd808c70b90535de327e81a50",
+                "reference": "bf4aebd170fadf5fd808c70b90535de327e81a50",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "php-http/message-factory": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "provide": {
+                "php-http/message-factory-implementation": "1.0",
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "http-interop/http-factory-tests": "^0.9",
+                "php-http/psr7-integration-tests": "^1.0",
+                "phpunit/phpunit": "^7.5 || 8.5 || 9.4",
+                "symfony/error-handler": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nyholm\\Psr7\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                },
+                {
+                    "name": "Martijn van der Ven",
+                    "email": "martijn@vanderven.se"
+                }
+            ],
+            "description": "A fast PHP7 implementation of PSR-7",
+            "homepage": "https://tnyholm.se",
+            "keywords": [
+                "psr-17",
+                "psr-7"
+            ],
+            "support": {
+                "issues": "https://github.com/Nyholm/psr7/issues",
+                "source": "https://github.com/Nyholm/psr7/tree/1.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Zegnat",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-04-09T08:34:27+00:00"
+        },
+        {
+            "name": "openlss/lib-array2xml",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nullivex/lib-array2xml.git",
+                "reference": "a91f18a8dfc69ffabe5f9b068bc39bb202c81d90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nullivex/lib-array2xml/zipball/a91f18a8dfc69ffabe5f9b068bc39bb202c81d90",
+                "reference": "a91f18a8dfc69ffabe5f9b068bc39bb202c81d90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LSS": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan Tong",
+                    "email": "bryan@nullivex.com",
+                    "homepage": "https://www.nullivex.com"
+                },
+                {
+                    "name": "Tony Butler",
+                    "email": "spudz76@gmail.com",
+                    "homepage": "https://www.nullivex.com"
+                }
+            ],
+            "description": "Array2XML conversion library credit to lalit.org",
+            "homepage": "https://www.nullivex.com",
+            "keywords": [
+                "array",
+                "array conversion",
+                "xml",
+                "xml conversion"
+            ],
+            "support": {
+                "issues": "https://github.com/nullivex/lib-array2xml/issues",
+                "source": "https://github.com/nullivex/lib-array2xml/tree/master"
+            },
+            "time": "2019-03-29T20:06:56+00:00"
+        },
+        {
+            "name": "php-http/message-factory",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/message-factory.git",
+                "reference": "4d8778e1c7d405cbb471574821c1ff5b68cc8f57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/message-factory/zipball/4d8778e1c7d405cbb471574821c1ff5b68cc8f57",
+                "reference": "4d8778e1c7d405cbb471574821c1ff5b68cc8f57",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/http-message": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Factory interfaces for PSR-7 HTTP Message",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "stream",
+                "uri"
+            ],
+            "support": {
+                "issues": "https://github.com/php-http/message-factory/issues",
+                "source": "https://github.com/php-http/message-factory/tree/1.1.0"
+            },
+            "time": "2023-04-14T14:16:17+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1923,6 +2479,166 @@
                 "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
             "time": "2019-01-08T18:20:26+00:00"
+        },
+        {
+            "name": "psr/http-client",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-client.git",
+                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0",
+                "psr/http-message": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP clients",
+            "homepage": "https://github.com/php-fig/http-client",
+            "keywords": [
+                "http",
+                "http-client",
+                "psr",
+                "psr-18"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/1.0.2"
+            },
+            "time": "2023-04-10T20:12:12+00:00"
+        },
+        {
+            "name": "psr/http-factory",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-factory.git",
+                "reference": "e616d01114759c4c489f93b099585439f795fe35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/e616d01114759c4c489f93b099585439f795fe35",
+                "reference": "e616d01114759c4c489f93b099585439f795fe35",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "psr/http-message": "^1.0 || ^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "psr",
+                "psr-17",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-factory/tree/1.0.2"
+            },
+            "time": "2023-04-10T20:10:41+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
+                "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/1.1"
+            },
+            "time": "2023-04-04T09:50:52+00:00"
         },
         {
             "name": "psr/link",
@@ -5404,6 +6120,94 @@
                 }
             ],
             "time": "2023-03-14T15:00:05+00:00"
+        },
+        {
+            "name": "symfony/psr-http-message-bridge",
+            "version": "v2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/psr-http-message-bridge.git",
+                "reference": "a125b93ef378c492e274f217874906fb9babdebb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/a125b93ef378c492e274f217874906fb9babdebb",
+                "reference": "a125b93ef378c492e274f217874906fb9babdebb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "psr/http-message": "^1.0",
+                "symfony/http-foundation": "^4.4 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "nyholm/psr7": "^1.1",
+                "psr/log": "^1.1 || ^2 || ^3",
+                "symfony/browser-kit": "^4.4 || ^5.0 || ^6.0",
+                "symfony/config": "^4.4 || ^5.0 || ^6.0",
+                "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0",
+                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0",
+                "symfony/http-kernel": "^4.4 || ^5.0 || ^6.0",
+                "symfony/phpunit-bridge": "^5.4@dev || ^6.0"
+            },
+            "suggest": {
+                "nyholm/psr7": "For a super lightweight PSR-7/17 implementation"
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\PsrHttpMessage\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "PSR HTTP message bridge",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr-17",
+                "psr-7"
+            ],
+            "support": {
+                "issues": "https://github.com/symfony/psr-http-message-bridge/issues",
+                "source": "https://github.com/symfony/psr-http-message-bridge/tree/v2.1.4"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-11-28T22:46:34+00:00"
         },
         {
             "name": "symfony/routing",

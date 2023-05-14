@@ -44,7 +44,7 @@ class Room
         return $this->capacity;
     }
 
-    public function setCapacity(int $capacity): self
+    public function setCapacity(int $capacity = 50): self
     {
         $this->capacity = $capacity;
 

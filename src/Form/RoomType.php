@@ -6,6 +6,8 @@ use App\Entity\Room;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class RoomType extends AbstractType
 {
@@ -13,8 +15,15 @@ class RoomType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('capacity')
-            ->add('type')
+            ->add('capacity', IntegerType::class, [
+                'data' => 50,
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices'  => [
+                    'Cours' => 'cours',
+                    'TP' => 'tp',
+                ],
+            ])
         ;
     }
 

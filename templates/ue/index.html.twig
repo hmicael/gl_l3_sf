@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>UE index</h1>
-    <a href="{{ path('app_u_e_new') }}" class="btn btn-outline-primary">
+    <a href="{{ path('app_ue_new') }}" class="btn btn-outline-primary">
         <i class="fa-sharp fa-regular fa-plus"></i>
     </a>
     <table class="table">
@@ -18,23 +18,25 @@
                 <th>ConstraintsApplied</th>
                 <th>Semester</th>
                 <th>Filiere</th>
+                <th>Teacher</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for u_e in u_es %}
+        {% for ue in ues %}
             <tr>
-                <td>{{ u_e.id }}</td>
-                <td>{{ u_e.name }}</td>
-                <td>{{ u_e.startDate ? u_e.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ u_e.nbStudent }}</td>
-                <td>{{ u_e.nbGroup }}</td>
-                <td>{{ u_e.constraintsApplied ? 'Yes' : 'No' }}</td>
-                <td>{{ u_e.semester }}</td>
-                <td>{{ u_e.filiere ? u_e.filiere|join(', ') : '' }}</td>
+                <td>{{ ue.id }}</td>
+                <td>{{ ue.name }}</td>
+                <td>{{ ue.startDate ? ue.startDate|date('Y-m-d') : '' }}</td>
+                <td>{{ ue.nbStudent }}</td>
+                <td>{{ ue.nbGroup }}</td>
+                <td>{{ ue.constraintsApplied ? 'Yes' : 'No' }}</td>
+                <td>{{ ue.semester }}</td>
+                <td>{{ ue.filiere ? ue.filiere|join(', ') : '' }}</td>
+                <td>{{ ue.teacher }}</td>
                 <td>
-                    <a href="{{ path('app_u_e_show', {'id': u_e.id}) }}">show</a>
-                    <a href="{{ path('app_u_e_edit', {'id': u_e.id}) }}">edit</a>
+                    <a href="{{ path('app_ue_show', {'id': ue.id}) }}">show</a>
+                    <a href="{{ path('app_ue_edit', {'id': ue.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

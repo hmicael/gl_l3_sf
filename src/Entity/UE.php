@@ -40,6 +40,9 @@ class UE
     #[ORM\Column(type: Types::ARRAY)]
     private array $filiere = [];
 
+    #[ORM\Column(length: 30)]
+    private ?string $teacher = null;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -160,6 +163,18 @@ class UE
     public function setFiliere(array $filiere): self
     {
         $this->filiere = $filiere;
+
+        return $this;
+    }
+
+    public function getTeacher(): ?string
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(string $teacher): self
+    {
+        $this->teacher = $teacher;
 
         return $this;
     }

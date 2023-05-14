@@ -35,7 +35,7 @@
                 <td>{{ ue.filiere ? ue.filiere|join(', ') : '' }}</td>
                 <td>{{ ue.teacher }}</td>
                 <td>
-                    <a href="{{ path('app_ue_show', {'id': ue.id}) }}" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></a></a>
+                    <a href="{{ path('app_ue_show', {'id': ue.id}) }}" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></a>
                     <a href="{{ path('app_ue_edit', {'id': ue.id}) }}">edit</a>
                 </td>
             </tr>

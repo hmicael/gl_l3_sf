@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>UE index</h1>
-
+    <a href="{{ path('app_u_e_new') }}" class="btn btn-outline-primary">
+        <i class="fa-sharp fa-regular fa-plus"></i>
+    </a>
     <table class="table">
         <thead>
             <tr>
@@ -42,6 +44,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_u_e_new') }}">Create new</a>
 {% endblock %}

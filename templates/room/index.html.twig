@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>Room index</h1>
-
+    <a href="{{ path('app_room_new') }}" class="btn btn-outline-primary">
+        <i class="fa-sharp fa-regular fa-plus"></i>
+    </a>
     <table class="table">
         <thead>
             <tr>
@@ -34,6 +36,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_room_new') }}">Create new</a>
 {% endblock %}

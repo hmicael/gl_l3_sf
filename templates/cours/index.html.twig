@@ -23,7 +23,7 @@
                 <td>{{ cour.id }}</td>
                 <td>{{ cour.name }}</td>
                 <td>{{ cour.type }}</td>
-                <td>{{ cour.duration }}</td>
+                <td>{{ cour.duration|date('H:i:s') }}</td>
                 <td>{{ cour.position }}</td>
                 <td>
                     <a href="{{ path('app_cours_show', {'id': cour.id}) }}" class="btn btn-outline-primary">

@@ -6,6 +6,7 @@ use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 #[UniqueEntity(fields: ['name', 'uE'], message: 'This cours already exists for this UE')]
@@ -23,8 +24,8 @@ class Cours
     #[ORM\Column(length: 10)]
     private ?string $type = null;
 
-    #[ORM\Column]
-    private ?int $duration = null;
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $duration = null;
 
     #[ORM\Column]
     #[Assert\Range(
@@ -66,18 +67,6 @@ class Cours
         return $this;
     }
 
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
     public function getPosition(): ?int
     {
         return $this->position;
@@ -98,6 +87,18 @@ class Cours
     public function setUE(?UE $uE): self
     {
         $this->uE = $uE;
+
+        return $this;
+    }
+
+    public function getDuration(): ?\DateTimeInterface
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(\DateTimeInterface $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }

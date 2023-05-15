@@ -18,7 +18,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="{{path('app_default') }}">Home</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                         <a class="nav-link" href="{{ path('cas_bundle_logout') }}">Logout</a>
                       </li>
                     </ul>
-                    Vous etes connect&eacute; en tant que {{ app.token.user.getAttributes()['displayName'][0] }}
+                    <span class="text-light">Vous etes connect&eacute; en tant que {{ app.token.user.getAttributes()['displayName'][0] }}</span>
                   </div>
                 </div>
               </nav>

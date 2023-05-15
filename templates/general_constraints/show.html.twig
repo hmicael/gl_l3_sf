@@ -55,8 +55,11 @@
                     <td>{{ holiday.beginning ? holiday.beginning|date('Y-m-d') : '' }}</td>
                     <td>{{ holiday.end ? holiday.end|date('Y-m-d') : '' }}</td>
                     <td>
-                        <a href="{{ path('app_holiday_show', {'id': holiday.id}) }}">show</a>
-                        <a href="{{ path('app_holiday_edit', {'id': holiday.id}) }}">edit</a>
+                        <a href="{{ path('app_holiday_show', {'id': holiday.id}) }}" class="btn btn-outline-primary">
+                            Show <i class="fa-solid fa-eye"></i>
+                        <a href="{{ path('app_holiday_edit', {'id': holiday.id}) }}" class="btn btn-outline-warning">
+                            Edit <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                     </td>
                 </tr>
             {% else %}

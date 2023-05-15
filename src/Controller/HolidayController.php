@@ -21,7 +21,7 @@ class HolidayController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_holiday_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_holiday_new_old', methods: ['GET', 'POST'])]
     public function new(Request $request, HolidayRepository $holidayRepository): Response
     {
         $holiday = new Holiday();

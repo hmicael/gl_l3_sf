@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\GeneralConstraints;
+use App\Entity\Holiday;
 use App\Form\GeneralConstraintsType;
+use App\Form\HolidayType;
 use App\Repository\GeneralConstraintsRepository;
+use App\Repository\HolidayRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +39,27 @@ class GeneralConstraintsController extends AbstractController
 
         return $this->renderForm('general_constraints/edit.html.twig', [
             'general_constraint' => $generalConstraint,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new-holiday', name: 'app_holiday_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    {
+        $generalConstraint = $generalConstraintsRepository->find(1);
+        $holiday = new Holiday();
+        $form = $this->createForm(HolidayType::class, $holiday);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $holiday->setGeneralConstraints($generalConstraint);
+            $holidayRepository->save($holiday, true);
+
+            return $this->redirectToRoute('app_general_constraints_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('holiday/new.html.twig', [
+            'holiday' => $holiday,
             'form' => $form,
         ]);
     }

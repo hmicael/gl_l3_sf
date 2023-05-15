@@ -131,8 +131,9 @@ class UE
 
     public function setSemester(int $semester): self
     {
-        $this->semester = $semester;
-
+        if ($semester == 1 || $semester == 2) {
+            $this->semester = $semester;
+        }
         return $this;
     }
 

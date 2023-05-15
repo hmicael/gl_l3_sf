@@ -16,9 +16,9 @@ class CoursType extends AbstractType
             ->add('name')
             ->add('type', ChoiceType::class, [
                 'choices'  => [
-                    'Cours' => 'cours',
-                    'TD' => 'td',
-                    'TP' => 'tp',
+                    'Cours' => 'Cours',
+                    'TD' => 'TD',
+                    'TP' => 'TP',
                 ],
             ])
             ->add('duration')

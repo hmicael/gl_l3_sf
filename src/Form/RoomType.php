@@ -20,8 +20,8 @@ class RoomType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices'  => [
-                    'Cours' => 'cours',
-                    'TP' => 'tp',
+                    'Cours' => 'Cours',
+                    'TP' => 'TP',
                 ],
             ])
         ;

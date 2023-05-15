@@ -30,4 +30,41 @@
             </tbody>
         </table>
     </section>
+    <hr>
+    <section>
+        <h1>Holiday</h1>
+        <a href="{{ path('app_holiday_new') }}"
+            class="btn btn-outline-primary">
+            <i class="fa-sharp fa-regular fa-plus"></i>
+        </a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Beginning</th>
+                    <th>End</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for holiday in general_constraints.holidays %}
+                <tr>
+                    <td>{{ holiday.id }}</td>
+                    <td>{{ holiday.type }}</td>
+                    <td>{{ holiday.beginning ? holiday.beginning|date('Y-m-d') : '' }}</td>
+                    <td>{{ holiday.end ? holiday.end|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_holiday_show', {'id': holiday.id}) }}">show</a>
+                        <a href="{{ path('app_holiday_edit', {'id': holiday.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

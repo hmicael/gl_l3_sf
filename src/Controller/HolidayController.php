@@ -40,7 +40,7 @@ class HolidayController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_holiday_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_holiday_show_old', methods: ['GET'])]
     public function show(Holiday $holiday): Response
     {
         return $this->render('holiday/show.html.twig', [

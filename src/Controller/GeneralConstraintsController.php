@@ -89,4 +89,12 @@ class GeneralConstraintsController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/holiday/{id}', name: 'app_holiday_show', methods: ['GET'])]
+    public function show(Holiday $holiday): Response
+    {
+        return $this->render('holiday/show.html.twig', [
+            'holiday' => $holiday,
+        ]);
+    }
 }

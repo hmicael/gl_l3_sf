@@ -84,6 +84,7 @@ class UEController extends AbstractController
     public function newCours(Request $request, UE $uE, CoursRepository $coursRepository): Response
     {
         $cour = new Cours();
+        $cour->setUe($uE);
         $form = $this->createForm(CoursType::class, $cour);
         $form->handleRequest($request);
 

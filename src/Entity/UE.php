@@ -203,7 +203,7 @@ class UE
             return $canAdd;
         }
 
-        return $this;
+        return false;
     }
 
     public function removeCour(Cours $cour): self

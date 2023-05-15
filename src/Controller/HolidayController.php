@@ -66,7 +66,7 @@ class HolidayController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_holiday_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_holiday_delete_old', methods: ['POST'])]
     public function delete(Request $request, Holiday $holiday, HolidayRepository $holidayRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$holiday->getId(), $request->request->get('_token'))) {

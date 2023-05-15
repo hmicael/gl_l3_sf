@@ -67,7 +67,7 @@ class GeneralConstraintsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit-holiday', name: 'app_holiday_edit', methods: ['GET', 'POST'])]
+    #[Route('/holiday/{id}/edit', name: 'app_holiday_edit', methods: ['GET', 'POST'])]
     public function editHoliday(Request $request, Holiday $holiday, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
     {
         $generalConstraint = $generalConstraintsRepository->find(1);
@@ -96,5 +96,15 @@ class GeneralConstraintsController extends AbstractController
         return $this->render('holiday/show.html.twig', [
             'holiday' => $holiday,
         ]);
+    }
+
+    #[Route('/holiday/{id}/delete', name: 'app_holiday_delete', methods: ['POST'])]
+    public function delete(Request $request, Holiday $holiday, HolidayRepository $holidayRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$holiday->getId(), $request->request->get('_token'))) {
+            $holidayRepository->remove($holiday, true);
+        }
+
+        return $this->redirectToRoute('app_general_constraints_index', [], Response::HTTP_SEE_OTHER);
     }
 }

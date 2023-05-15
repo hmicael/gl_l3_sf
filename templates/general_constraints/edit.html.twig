@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit GeneralConstraints{% endblock %}
+
+{% block body %}
+    <h1>Edit GeneralConstraints</h1>
+
+    {{ include('general_constraints/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_general_constraints_index') }}">back to list</a>
+
+    {{ include('general_constraints/_delete_form.html.twig') }}
+{% endblock %}

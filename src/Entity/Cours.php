@@ -5,9 +5,11 @@ namespace App\Entity;
 use App\Repository\CoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 #[UniqueEntity(fields: ['name', 'uE'], message: 'This cours already exists for this UE')]
+#[UniqueEntity(fields: ['position', 'uE'], message: 'This position already taken for this UE')]
 class Cours
 {
     #[ORM\Id]
@@ -25,6 +27,11 @@ class Cours
     private ?int $duration = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 20,
+        notInRangeMessage: 'Position must be between {{ min }} and {{ max }}',
+    )]
     private ?int $position = null;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]

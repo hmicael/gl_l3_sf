@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RoomRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 #[UniqueEntity(fields: ['name'], message: 'This room already exists')]
@@ -19,6 +20,11 @@ class Room
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 0,
+        max: 500,
+        notInRangeMessage: 'Capacity must be between {{ min }} and {{ max }}',
+    )]
     private ?int $capacity = null;
 
     #[ORM\Column(length: 10)]

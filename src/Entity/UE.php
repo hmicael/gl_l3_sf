@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UERepository::class)]
 #[UniqueEntity(fields: ['name'], message: 'This UE already exists')]
@@ -25,15 +26,30 @@ class UE
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 200,
+        notInRangeMessage: 'You must be between {{ min }} and {{ max }} students',
+    )]
     private ?int $nbStudent = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 200,
+        notInRangeMessage: 'You must be between {{ min }} and {{ max }} groups',
+    )]
     private ?int $nbGroup = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $constraintsApplied = null;
 
     #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 2,
+        notInRangeMessage: 'Semester must be 1 or 2',
+    )]
     private ?int $semester = null;
 
     #[ORM\OneToMany(mappedBy: 'uE', targetEntity: Cours::class)]
@@ -45,13 +61,28 @@ class UE
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $teacher = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column()]
+    #[Assert\Range(
+        min: 0,
+        max: 200,
+        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+    )]
     private ?int $nbCours = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column()]
+    #[Assert\Range(
+        min: 0,
+        max: 200,
+        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+    )]
     private ?int $nbTD = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column()]
+    #[Assert\Range(
+        min: 0,
+        max: 200,
+        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+    )]
     private ?int $nbTP = null;
 
     public function __construct()

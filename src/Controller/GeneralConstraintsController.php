@@ -44,7 +44,7 @@ class GeneralConstraintsController extends AbstractController
     }
 
     #[Route('/new-holiday', name: 'app_holiday_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    public function newHoliday(Request $request, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
     {
         $generalConstraint = $generalConstraintsRepository->find(1);
         $holiday = new Holiday();
@@ -62,6 +62,29 @@ class GeneralConstraintsController extends AbstractController
         }
 
         return $this->renderForm('holiday/new.html.twig', [
+            'holiday' => $holiday,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit-holiday', name: 'app_holiday_edit', methods: ['GET', 'POST'])]
+    public function editHoliday(Request $request, Holiday $holiday, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    {
+        $generalConstraint = $generalConstraintsRepository->find(1);
+        $form = $this->createForm(HolidayType::class, $holiday);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $holiday->setGeneralConstraints($generalConstraint);
+            if (! $holiday->getEnd()) {
+                $holiday->setEnd($holiday->getBeginning());
+            }
+            $holidayRepository->save($holiday, true);
+
+            return $this->redirectToRoute('app_general_constraints_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('holiday/edit.html.twig', [
             'holiday' => $holiday,
             'form' => $form,
         ]);

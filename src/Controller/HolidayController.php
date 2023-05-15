@@ -48,7 +48,7 @@ class HolidayController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_holiday_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_holiday_edit_old', methods: ['GET', 'POST'])]
     public function edit(Request $request, Holiday $holiday, HolidayRepository $holidayRepository): Response
     {
         $form = $this->createForm(HolidayType::class, $holiday);

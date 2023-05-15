@@ -43,6 +43,15 @@ class UE
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $teacher = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $nbCours = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nbTD = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nbTP = null;
+
     public function __construct()
     {
         $this->cours = new ArrayCollection();
@@ -175,6 +184,42 @@ class UE
     public function setTeacher(string $teacher): self
     {
         $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    public function getNbCours(): ?int
+    {
+        return $this->nbCours;
+    }
+
+    public function setNbCours(?int $nbCours = 0): self
+    {
+        $this->nbCours = $nbCours;
+
+        return $this;
+    }
+
+    public function getNbTD(): ?int
+    {
+        return $this->nbTD;
+    }
+
+    public function setNbTD(?int $nbTD = 0): self
+    {
+        $this->nbTD = $nbTD;
+
+        return $this;
+    }
+
+    public function getNbTP(): ?int
+    {
+        return $this->nbTP;
+    }
+
+    public function setNbTP(?int $nbTP = 0): self
+    {
+        $this->nbTP = $nbTP;
 
         return $this;
     }

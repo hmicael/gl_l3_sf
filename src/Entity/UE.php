@@ -106,7 +106,7 @@ class UE
         return $this->constraintsApplied;
     }
 
-    public function setConstraintsApplied(bool $constraintsApplied): self
+    public function setConstraintsApplied(bool $constraintsApplied = false): self
     {
         $this->constraintsApplied = $constraintsApplied;
 

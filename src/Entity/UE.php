@@ -65,7 +65,7 @@ class UE
     #[Assert\Range(
         min: 0,
         max: 200,
-        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+        notInRangeMessage: 'nbCours must be between {{ min }} and {{ max }}',
     )]
     private ?int $nbCours = null;
 
@@ -73,7 +73,7 @@ class UE
     #[Assert\Range(
         min: 0,
         max: 200,
-        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+        notInRangeMessage: 'nbTD must be between {{ min }} and {{ max }}',
     )]
     private ?int $nbTD = null;
 
@@ -81,7 +81,7 @@ class UE
     #[Assert\Range(
         min: 0,
         max: 200,
-        notInRangeMessage: 'You must be between {{ min }} and {{ max }} hours',
+        notInRangeMessage: 'nbTP must be between {{ min }} and {{ max }}',
     )]
     private ?int $nbTP = null;
 

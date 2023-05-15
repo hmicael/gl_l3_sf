@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Cours;
 use App\Entity\UE;
+use App\Form\CoursType;
 use App\Form\UEType;
+use App\Repository\CoursRepository;
 use App\Repository\UERepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/ue')]
 class UEController extends AbstractController
@@ -74,5 +78,68 @@ class UEController extends AbstractController
         }
 
         return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/cours/new', name: 'app_cours_new', methods: ['GET', 'POST'])]
+    public function newCours(Request $request, UE $uE, CoursRepository $coursRepository): Response
+    {
+        $cour = new Cours();
+        $form = $this->createForm(CoursType::class, $cour);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $cour->setUE($uE);
+            $coursRepository->save($cour, true);
+
+            return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('cours/new.html.twig', [
+            'cour' => $cour,
+            'form' => $form,
+            'ue' => $uE,
+        ]);
+    }
+
+    #[Route('/{id}/cours/{courId}', name: 'app_cours_show', methods: ['GET'])]
+    #[ParamConverter('cour', class: Cours::class, options: ['id' => 'courId'])]
+    public function showCours(UE $uE ,Cours $cour): Response
+    {
+        return $this->render('cours/show.html.twig', [
+            'cour' => $cour,
+            'ue' => $uE,
+        ]);
+    }
+
+    #[Route('/{id}/cours/{courId}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]
+    #[ParamConverter('cour', class: Cours::class, options: ['id' => 'courId'])]
+    public function editCours(Request $request, Ue $uE, Cours $cour, CoursRepository $coursRepository): Response
+    {
+        $form = $this->createForm(CoursType::class, $cour);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $coursRepository->save($cour, true);
+
+            return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('cours/edit.html.twig', [
+            'cour' => $cour,
+            'form' => $form,
+            'ue' => $uE,
+        ]);
+    }
+
+    #[Route('/{id}/cours/{courId}/delete', name: 'app_cours_delete', methods: ['POST'])]
+    #[ParamConverter('cour', class: Cours::class, options: ['id' => 'courId'])]
+    
+    public function deleteCours(Request $request, UE $uE, Cours $cour, CoursRepository $coursRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$cour->getId(), $request->request->get('_token'))) {
+            $coursRepository->remove($cour, true);
+        }
+
+        return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
     }
 }

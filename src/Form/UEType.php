@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 
 class UEType extends AbstractType
 {
@@ -15,7 +17,7 @@ class UEType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('startDate', TextType::class, ['label' => 'Start date'])
+            ->add('startDate', DateType::class, ['label' => 'Start date'])
             ->add('nbStudent', TextType::class, ['label' => 'Number of students'])
             ->add('nbGroup', TextType::class, ['label' => 'Number of groups'])
             ->add('nbCours', TextType::class, ['label' => 'Number of courses'])

@@ -53,6 +53,9 @@ class GeneralConstraintsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $holiday->setGeneralConstraints($generalConstraint);
+            if (! $holiday->getEnd()) {
+                $holiday->setEnd($holiday->getBeginning());
+            }
             $holidayRepository->save($holiday, true);
 
             return $this->redirectToRoute('app_general_constraints_index', [], Response::HTTP_SEE_OTHER);

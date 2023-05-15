@@ -17,7 +17,6 @@ class UEType extends AbstractType
             ->add('startDate')
             ->add('nbStudent')
             ->add('nbGroup')
-            ->add('constraintsApplied')
             ->add('semester', ChoiceType::class, [
                 'choices'  => [
                     '1' => '1',

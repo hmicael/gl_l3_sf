@@ -28,7 +28,7 @@ class UE
     #[ORM\Column]
     private ?int $nbGroup = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $constraintsApplied = null;
 
     #[ORM\Column]
@@ -37,10 +37,10 @@ class UE
     #[ORM\OneToMany(mappedBy: 'uE', targetEntity: Cours::class)]
     private Collection $cours;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $filiere = [];
+    #[ORM\Column(length: 100)]
+    private ?string $filiere = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $teacher = null;
 
     public function __construct()
@@ -155,12 +155,12 @@ class UE
         return $this;
     }
 
-    public function getFiliere(): array
+    public function getFiliere(): ?string
     {
         return $this->filiere;
     }
 
-    public function setFiliere(array $filiere): self
+    public function setFiliere(string $filiere): self
     {
         $this->filiere = $filiere;
 

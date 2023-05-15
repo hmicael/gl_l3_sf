@@ -145,11 +145,31 @@ class UE
         return $this->cours;
     }
 
-    public function addCour(Cours $cour): self
+    public function addCour(Cours $cour): bool
     {
         if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-            $cour->setUE($this);
+            $type = $cour->getType();
+            $nbType = 0;
+            foreach ($this->cours as $cours) {
+                if ($cours->getType() == $type) {
+                    $nbType++;
+                }
+            }
+            $canAdd = true;
+            // if we already have the max number of this type of course
+            if ($type == 'Cours' && $nbType >= $this->nbCours) {
+                $canAdd = false;
+            } elseif ($type == 'TD' && $nbType >= $this->nbTD) {
+                $canAdd = false;
+            } elseif ($type == 'TP' && $nbType >= $this->nbTP) {
+                $canAdd = false;
+            }
+            if ($canAdd) {
+                $this->cours[] = $cour;
+                $cour->setUE($this);
+            }
+            
+            return $canAdd;
         }
 
         return $this;

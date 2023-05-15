@@ -35,7 +35,7 @@ class UEController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $uERepository->save($uE, true);
 
-            return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('ue/new.html.twig', [
@@ -88,10 +88,16 @@ class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $cour->setUE($uE);
-            $coursRepository->save($cour, true);
+            if ($uE->addCour($cour)) {
+                $coursRepository->save($cour, true);
 
-            return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
+            } else {
+                $this->addFlash(
+                    'notice',
+                    'You can\'t add any more ' . $cour->getType() . ' to this UE'
+                );
+            }
         }
 
         return $this->renderForm('cours/new.html.twig', [

@@ -3,36 +3,31 @@
 {% block title %}GeneralConstraints{% endblock %}
 
 {% block body %}
-    <h1>GeneralConstraints</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ general_constraint.id }}</td>
-            </tr>
-            <tr>
-                <th>StartHour</th>
-                <td>{{ general_constraint.startHour ? general_constraint.startHour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndHour</th>
-                <td>{{ general_constraint.endHour ? general_constraint.endHour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>BreakDuration</th>
-                <td>{{ general_constraint.breakDuration ? general_constraint.breakDuration|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CourseMaxDuration</th>
-                <td>{{ general_constraint.courseMaxDuration ? general_constraint.courseMaxDuration|date('H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_general_constraints_index') }}">back to list</a>
-
-    <a href="{{ path('app_general_constraints_edit', {'id': general_constraint.id}) }}">edit</a>
-
-    {{ include('general_constraints/_delete_form.html.twig') }}
+    <section>
+        <h1>GeneralConstraints</h1>
+        <a href="{{ path('app_general_constraints_edit') }}"
+            class="btn btn-outline-warning">
+            Edit <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>StartHour</th>
+                    <td>{{ general_constraints.startHour ? general_constraints.startHour|date('H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>EndHour</th>
+                    <td>{{ general_constraints.endHour ? general_constraints.endHour|date('H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>BreakDuration</th>
+                    <td>{{ general_constraints.breakDuration ? general_constraints.breakDuration|date('H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>CourseMaxDuration</th>
+                    <td>{{ general_constraints.courseMaxDuration ? general_constraints.courseMaxDuration|date('H:i:s') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

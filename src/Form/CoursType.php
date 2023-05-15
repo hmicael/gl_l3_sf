@@ -6,6 +6,7 @@ use App\Entity\Cours;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CoursType extends AbstractType
 {
@@ -13,10 +14,15 @@ class CoursType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices'  => [
+                    'Cours' => 'cours',
+                    'TD' => 'td',
+                    'TP' => 'tp',
+                ],
+            ])
             ->add('duration')
             ->add('position')
-            ->add('uE')
         ;
     }
 

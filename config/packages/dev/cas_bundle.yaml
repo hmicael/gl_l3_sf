@@ -8,7 +8,7 @@ cas:
                 - renew
                 - gateway
             default_parameters:
-                service: cas_bundle_homepage
+                service: app_default
         serviceValidate:
             path: /p3/serviceValidate
             allowed_parameters:
@@ -24,19 +24,19 @@ cas:
             allowed_parameters:
                 - service
             default_parameters:
-                service: cas_bundle_homepage
-        proxy:
-            path: /proxy
-            allowed_parameters:
-                - targetService
-                - pgt
-        proxyValidate:
-            path: /p3/proxyValidate
-            allowed_parameters:
-                - service
-                - ticket
-                - pgtUrl
-                - format
-            default_parameters:
-                format: JSON
+                service: app_default
+        # proxy:
+        #     path: /proxy
+        #     allowed_parameters:
+        #         - targetService
+        #         - pgt
+        # proxyValidate:
+        #     path: /p3/proxyValidate
+        #     allowed_parameters:
+        #         - service
+        #         - ticket
+        #         - pgtUrl
+        #         - format
+        #     default_parameters:
+        #         format: JSON
                 #pgtUrl: cas_bundle_proxy_callback

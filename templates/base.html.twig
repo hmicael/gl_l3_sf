@@ -44,6 +44,7 @@
                         <a class="nav-link" href="{{ path('cas_bundle_logout') }}">Logout</a>
                       </li>
                     </ul>
+                    Vous etes connect&eacute; en tant que {{ app.token.user.getAttributes()['displayName'][0] }}
                   </div>
                 </div>
               </nav>

@@ -12,7 +12,7 @@ security:
         # this firewall is going to require to login for the /secured path
         secured:
             provider: cas
-            pattern: ^/secured
+            pattern: ^/
             custom_authenticator: EcPhp\CasBundle\Security\CasAuthenticator
             form_login:
                 check_path: cas_bundle_login
@@ -32,7 +32,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/cas, roles: PUBLIC_ACCESS }
-        - { path: ^/secured, roles: ROLE_CAS_AUTHENTICATED }
+        - { path: ^/, roles: ROLE_CAS_AUTHENTICATED }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

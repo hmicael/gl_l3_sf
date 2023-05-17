@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}New Room{% endblock %}
 
@@ -6,7 +6,7 @@
     <section class="align-center col-md-4">
         <h1>Create new Room</h1>
         {{ include('room/_form.html.twig') }}
-        <a href="{{ path('app_room_index') }}" class="mt-3 btn btn-outline-secondary">
+        <a href="{{ path('app_room_index_admin') }}" class="mt-3 btn btn-outline-secondary">
             <i class="fa-solid fa-arrow-left"></i> Back to list
         </a>
     </section>

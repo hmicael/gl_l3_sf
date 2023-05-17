@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Room index{% endblock %}
+
+{% block body %}
+    <h1>Room index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.name }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.type }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

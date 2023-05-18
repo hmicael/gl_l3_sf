@@ -1,13 +1,13 @@
 <?php
 
-// src/Service/FiliereGetter.php
+// src/Service/PlanningGeneratorService.php
 namespace App\Service;
 
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Ldap\Ldap;
 
-class FiliereGetter {
+class PlanningGeneratorService {
     private $ldap;
     private $parameterBag;
     private $security;

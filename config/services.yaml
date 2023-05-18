@@ -16,7 +16,7 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-    App\Service\FiliereGetter:
+    App\Service\FiliereGetterService:
         arguments:
             - $ParameterBagInterface: '@parameter_bag'
             - $security : '@Symfony\Component\Security\Core\Security'

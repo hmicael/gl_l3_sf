@@ -8,22 +8,23 @@ use App\Form\CoursType;
 use App\Form\UEType;
 use App\Repository\CoursRepository;
 use App\Repository\UERepository;
+use App\Service\PlanningGeneratorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use App\Service\FiliereGetter;
+use App\Service\FiliereGetterService;
 
 #[Route('/ue')]
 class UEController extends AbstractController
 {
     #[Route('/', name: 'app_ue_index', methods: ['GET'])]
-    public function index(UERepository $uERepository, FiliereGetter $filiereGetter): Response
+    public function index(UERepository $uERepository, FiliereGetterService $FiliereGetterService): Response
     {
         $ues = $uERepository->findAll();
         foreach ($ues as $ue) {
-            $filieres = $filiereGetter->getGroups($ue->getFilieres());
+            $filieres = $FiliereGetterService->getGroups($ue->getFilieres());
             $filieres = array_column($filieres, 'description');
             $ue->setFilieres($filieres);
         }
@@ -53,9 +54,9 @@ class UEController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_ue_show', methods: ['GET'])]
-    public function show(UE $uE, FiliereGetter $filiereGetter): Response
+    public function show(UE $uE, FiliereGetterService $FiliereGetterService): Response
     {
-        $filieres = $filiereGetter->getGroups($uE->getFilieres());
+        $filieres = $FiliereGetterService->getGroups($uE->getFilieres());
         $filieres = array_column($filieres, 'description');
         $uE->setFilieres($filieres);
         return $this->render('ue/show.html.twig', [
@@ -162,7 +163,7 @@ class UEController extends AbstractController
     }
 
     #[Route('/{id}/apply-constraint', name: 'app_ue_apply_constraint', methods: ['POST'])]
-    public function applyConstraint(Request $request, UE $uE, UERepository $uERepository): Response
+    public function applyConstraint(Request $request, UE $uE, UERepository $uERepository, PlanningGeneratorService $planningGeneratorService): Response
     {
         if ($this->isCsrfTokenValid('apply_constraint'.$uE->getId(), $request->request->get('_token'))) {
             $uE->setConstraintsApplied(true);

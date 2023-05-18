@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\FiliereGetter;
+use App\Service\FiliereGetterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanningController extends AbstractController
 {
     #[Route('/planning', name: 'app_planning')]
-    public function index(FiliereGetter $filiereGetter): Response
+    public function index(FiliereGetterService $FiliereGetterService): Response
     {
         $location = $this->getParameter('kernel.project_dir') . '/public/planning';
         $fileList = scandir($location);
@@ -26,7 +26,7 @@ class PlanningController extends AbstractController
             $plannings[] = [
                 'cn' => $cn,
                 'semester' => $semestre,
-                'description' => $filiereGetter->getDescription($cn),
+                'description' => $FiliereGetterService->getDescription($cn),
                 'filename' => $filename,
             ];
         }

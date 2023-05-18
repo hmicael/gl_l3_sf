@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\UE;
-use App\Service\FiliereGetter;
+use App\Service\FiliereGetterService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,16 +14,16 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class UEType extends AbstractType
 {
-    private FiliereGetter $filiereGetter;
+    private FiliereGetterService $FiliereGetterService;
 
-    public function __construct(FiliereGetter $filiereGetter)
+    public function __construct(FiliereGetterService $FiliereGetterService)
     {
-        $this->filiereGetter = $filiereGetter;
+        $this->FiliereGetterService = $FiliereGetterService;
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $filieres = $this->filiereGetter->getGroups();
+        $filieres = $this->FiliereGetterService->getGroups();
         // ici on transforme le tableau de filières en tableau associatif
         // de la forme ['description' => 'cn']
         $choices = array_combine(

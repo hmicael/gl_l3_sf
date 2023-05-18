@@ -52,7 +52,7 @@ class UE
     )]
     private ?int $semester = null;
 
-    #[ORM\OneToMany(mappedBy: 'uE', targetEntity: Cours::class)]
+    #[ORM\OneToMany(mappedBy: 'uE', targetEntity: Cours::class, orphanRemoval: true)]
     private Collection $cours;
 
     #[ORM\Column(length: 100)]

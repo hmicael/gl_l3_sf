@@ -277,4 +277,10 @@ class UE
 
         return $this;
     }
+
+    public function getNumberOfCourse(): int
+    {
+        return $this->nbCours + $this->nbTD + $this->nbTP;
+    }
+
 }

@@ -71,6 +71,7 @@ class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uE->setConstraintsApplied(false);
             $uERepository->save($uE, true);
 
             return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
@@ -93,7 +94,7 @@ class UEController extends AbstractController
     }
 
     #[Route('/{id}/cours/new', name: 'app_cours_new', methods: ['GET', 'POST'])]
-    public function newCours(Request $request, UE $uE, CoursRepository $coursRepository): Response
+    public function newCours(Request $request, UE $uE, CoursRepository $coursRepository, UERepository $uERepository): Response
     {
         $cour = new Cours();
         $cour->setUe($uE);
@@ -102,7 +103,10 @@ class UEController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($uE->addCour($cour)) {
+                $uE->setConstraintsApplied(false);
+
                 $coursRepository->save($cour, true);
+                $uERepository->save($uE, true);
 
                 return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
             } else {
@@ -132,13 +136,15 @@ class UEController extends AbstractController
 
     #[Route('/{id}/cours/{courId}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]
     #[ParamConverter('cour', class: Cours::class, options: ['id' => 'courId'])]
-    public function editCours(Request $request, Ue $uE, Cours $cour, CoursRepository $coursRepository): Response
+    public function editCours(Request $request, Ue $uE, Cours $cour, CoursRepository $coursRepository, UERepository $uERepository): Response
     {
         $form = $this->createForm(CoursType::class, $cour);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uE->setConstraintsApplied(false);
             $coursRepository->save($cour, true);
+            $uERepository->save($uE, true);
 
             return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
         }
@@ -153,10 +159,12 @@ class UEController extends AbstractController
     #[Route('/{id}/cours/{courId}/delete', name: 'app_cours_delete', methods: ['POST'])]
     #[ParamConverter('cour', class: Cours::class, options: ['id' => 'courId'])]
     
-    public function deleteCours(Request $request, UE $uE, Cours $cour, CoursRepository $coursRepository): Response
+    public function deleteCours(Request $request, UE $uE, Cours $cour, CoursRepository $coursRepository, UERepository $uERepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$cour->getId(), $request->request->get('_token'))) {
+            $uE->setConstraintsApplied(false);
             $coursRepository->remove($cour, true);
+            $uERepository->save($uE, true);
         }
 
         return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);

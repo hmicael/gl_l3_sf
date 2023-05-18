@@ -42,6 +42,13 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link 
+                          {% if app.request.attributes.get('_route') matches '{^app_ue|app_cours}' %}active{% endif %}"
+                          href="{{ path('app_planning') }}">
+                          Planning
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link 
                           {% if app.request.attributes.get('_route') matches '{^app_general|app_holiday}' %}active{% endif %}"
                           href="{{ path('app_general_constraints_index') }}">
                           General Constraints

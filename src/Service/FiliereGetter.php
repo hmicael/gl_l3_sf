@@ -49,4 +49,24 @@ class FiliereGetter {
 
         return $filieres;
     }
+
+    public function getDescription($cn) : string
+    {
+        $ldapGroupDn = $this->parameterBag->get('LDAP_GROUP_DN');
+        $ldapUserUid = $this->parameterBag->get('LDAP_USER_UID');
+        $ldapUserPassword = $this->parameterBag->get('LDAP_USER_PASSWORD');
+        $this->ldap->bind($ldapUserUid, $ldapUserPassword);
+        
+        $filter = sprintf("(&(objectClass=groupOfNames)(cn=%s))", $cn);
+        $ldapQuery = $this->ldap->query($this->parameterBag->get('LDAP_GROUP_DN'), $filter);
+        $results = $ldapQuery->execute();
+
+        $description = [];
+        foreach ($results as $entry) {
+            $attr = $entry->getAttributes();
+            $description[] = $attr['description'][0];
+        }
+
+        return $description[0];
+    }
 }

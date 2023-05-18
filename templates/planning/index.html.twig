@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlanningController!{% endblock %}
+
+{% block body %}
+    <h1>Planning index</h1>
+
+    <section class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Semester</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for planning in plannings %}
+                <tr>
+                    <td>{{ planning.description }}</td>
+                    <td>{{ planning.semester }}</td>
+                    <td>
+                        <a href="{{ path('app_planning_show', {'file': planning.filename}) }}" class="btn btn-outline-primary">Show <i class="fa-solid fa-eye"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

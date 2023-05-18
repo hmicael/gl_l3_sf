@@ -21,7 +21,7 @@ class Room
 
     #[ORM\Column]
     #[Assert\Range(
-        min: 0,
+        min: 10,
         max: 500,
         notInRangeMessage: 'Capacity must be between {{ min }} and {{ max }}',
     )]

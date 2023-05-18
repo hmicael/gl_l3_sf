@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class HolidayType extends AbstractType
 {
@@ -19,8 +20,14 @@ class HolidayType extends AbstractType
                 'Holiday' => 'Holiday',
             ],
         ])
-            ->add('beginning')
-            ->add('end')
+            ->add('beginning', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('end', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
             // ->add('generalConstraints')
         ;
     }

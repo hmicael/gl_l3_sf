@@ -17,6 +17,10 @@ class RoomType extends AbstractType
             ->add('name')
             ->add('capacity', IntegerType::class, [
                 'data' => 50,
+                'attr' => [
+                    'min' => 10,
+                    'max' => 500,
+                ],
             ])
             ->add('type', ChoiceType::class, [
                 'choices'  => [

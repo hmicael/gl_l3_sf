@@ -98,7 +98,7 @@ class UEController extends AbstractController
     {
         $cour = new Cours();
         $cour->setUe($uE);
-        $form = $this->createForm(CoursType::class, $cour);
+        $form = $this->createForm(CoursType::class, $cour, ['data' => $cour]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

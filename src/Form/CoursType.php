@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class CoursType extends AbstractType
 {
@@ -21,8 +23,18 @@ class CoursType extends AbstractType
                     'TP' => 'TP',
                 ],
             ])
-            ->add('duration')
-            ->add('position')
+            ->add('duration', TimeType::class, [
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'hours' => range(1, 3),
+                'minutes' => range(0, 45, 15),
+            ])
+            ->add('position', IntegerType::class, [
+                'attr' => [
+                    'min' => 1,
+                    'max' => $options['data']->getUE()->getNumberOfCourse(),
+                ],
+            ])
         ;
     }
 

@@ -58,7 +58,7 @@ class UE
     #[ORM\Column(length: 100)]
     private ?string $filiere = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $teacher = null;
 
     #[ORM\Column()]

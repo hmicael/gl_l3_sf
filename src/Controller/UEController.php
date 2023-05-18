@@ -33,6 +33,7 @@ class UEController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $uE->setTeacher($this->getUser());
             $uERepository->save($uE, true);
 
             return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);

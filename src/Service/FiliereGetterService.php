@@ -8,11 +8,11 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Ldap\Ldap;
 
 class FiliereGetterService {
-    private $ldap;
-    private $parameterBag;
-    private $security;
+    private Ldap $ldap;
+    private ParameterBagInterface $parameterBag;
+    private Security $security;
 
-    public function __construct(ParameterBagInterface $parameterBag, Security $security,)
+    public function __construct(ParameterBagInterface $parameterBag, Security $security)
     {
         $this->parameterBag = $parameterBag;
         $this->security = $security;

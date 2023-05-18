@@ -12,6 +12,9 @@
             <i class="fa-solid fa-arrow-left"></i> Back to list
         </a>
 
+        {% if ue.constraintsApplied == false %}
+            {{ include('ue/_apply_constraint.html.twig') }}
+        {% endif %}
         {{ include('ue/_delete_form.html.twig') }}
     </section>
 {% endblock %}

@@ -10,6 +10,9 @@
             Edit <i class="fa-solid fa-pen-to-square"></i>
         </a>
 
+        {% if ue.constraintsApplied == false %}
+            {{ include('ue/_apply_constraint.html.twig') }}
+        {% endif %}
         {{ include('ue/_delete_form.html.twig') }}
 
         <table class="table">

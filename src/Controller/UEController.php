@@ -149,4 +149,16 @@ class UEController extends AbstractController
 
         return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/apply-constraint', name: 'app_ue_apply_constraint', methods: ['POST'])]
+    public function applyConstraint(Request $request, UE $uE, UERepository $uERepository): Response
+    {
+        if ($this->isCsrfTokenValid('apply_constraint'.$uE->getId(), $request->request->get('_token'))) {
+            $uE->setConstraintsApplied(true);
+            $uERepository->save($uE, true);
+        }
+        // TODO: generate planning
+
+        return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_ue_apply_constraint', {'id': ue.id}) }}" class="mb-3">
+    <input type="hidden" name="_token" value="{{ csrf_token('apply_constraint' ~ ue.id) }}">
+    <button class="btn btn-outline-success">Apply Constraint</i></button>
+</form>

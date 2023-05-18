@@ -28,7 +28,7 @@ class GeneralConstraintsType extends AbstractType
             ->add('breakDuration', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'hours' => range(0, 1),
+                'hours' => range(0, 2),
                 'minutes' => range(0, 45, 15),
             ])
             ->add('courseMaxDuration', TimeType::class, [

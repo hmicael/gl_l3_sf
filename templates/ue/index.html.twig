@@ -18,7 +18,7 @@
                     <th>NbGroup</th>
                     <th>ConstraintsApplied</th>
                     <th>Semester</th>
-                    <th>Filiere</th>
+                    <th>Filieres</th>
                     <th>Teacher</th>
                     <th>actions</th>
                 </tr>
@@ -33,7 +33,7 @@
                     <td>{{ ue.nbGroup }}</td>
                     <td>{{ ue.constraintsApplied ? 'Yes' : 'No' }}</td>
                     <td>{{ ue.semester }}</td>
-                    <td>{{ ue.filiere ? ue.filiere|join(', ') : '' }}</td>
+                    <td>{{ ue.filieres ? ue.filieres|join(', ') : '' }}</td>
                     <td>{{ ue.teacher }}</td>
                     <td>
                         <a href="{{ path('app_ue_show', {'id': ue.id}) }}" class="btn btn-outline-primary">Show <i class="fa-solid fa-eye"></i></a>

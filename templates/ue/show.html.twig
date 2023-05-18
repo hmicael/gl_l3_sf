@@ -62,15 +62,15 @@
                     <td>{{ ue.semester }}</td>
                 </tr>
                 <tr>
-                    <th>Filiere</th>
-                    <td>{{ ue.filiere ? ue.filiere|join(', ') : '' }}</td>
+                    <th>Filieres</th>
+                    <td>{{ ue.filieres ? ue.filieres|join(', ') : '' }}</td>
                 </tr>
             </tbody>
         </table>
     </section>
     <hr>
     <section>
-        <h1>List of Courses</h1>
+        <h1>List of Courses</h1> 
         <a href="{{ path('app_cours_new', {'id' : ue.id} ) }}" class="btn btn-outline-primary">
             <i class="fa-sharp fa-regular fa-plus"></i>
         </a>

@@ -55,9 +55,6 @@ class UE
     #[ORM\OneToMany(mappedBy: 'uE', targetEntity: Cours::class, orphanRemoval: true)]
     private Collection $cours;
 
-    #[ORM\Column(length: 100)]
-    private ?string $filiere = null;
-
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $teacher = null;
 
@@ -84,6 +81,9 @@ class UE
         notInRangeMessage: 'nbTP must be between {{ min }} and {{ max }}',
     )]
     private ?int $nbTP = null;
+
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $filieres = [];
 
     public function __construct()
     {
@@ -218,18 +218,6 @@ class UE
         return $this;
     }
 
-    public function getFiliere(): ?string
-    {
-        return $this->filiere;
-    }
-
-    public function setFiliere(string $filiere): self
-    {
-        $this->filiere = $filiere;
-
-        return $this;
-    }
-
     public function getTeacher(): ?string
     {
         return $this->teacher;
@@ -274,6 +262,18 @@ class UE
     public function setNbTP(?int $nbTP = 0): self
     {
         $this->nbTP = $nbTP;
+
+        return $this;
+    }
+
+    public function getFilieres(): array
+    {
+        return $this->filieres;
+    }
+
+    public function setFilieres(array $filieres): self
+    {
+        $this->filieres = $filieres;
 
         return $this;
     }

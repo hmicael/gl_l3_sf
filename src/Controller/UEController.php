@@ -13,15 +13,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Service\FiliereGetter;
 
 #[Route('/ue')]
 class UEController extends AbstractController
 {
     #[Route('/', name: 'app_ue_index', methods: ['GET'])]
-    public function index(UERepository $uERepository): Response
+    public function index(UERepository $uERepository, FiliereGetter $filiereGetter): Response
     {
+        $ues = $uERepository->findAll();
+        foreach ($ues as $ue) {
+            $filieres = $filiereGetter->getGroups($ue->getFilieres());
+            $filieres = array_column($filieres, 'description');
+            $ue->setFilieres($filieres);
+        }
         return $this->render('ue/index.html.twig', [
-            'ues' => $uERepository->findAll(),
+            'ues' => $ues,
         ]);
     }
 
@@ -46,8 +53,11 @@ class UEController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_ue_show', methods: ['GET'])]
-    public function show(UE $uE): Response
+    public function show(UE $uE, FiliereGetter $filiereGetter): Response
     {
+        $filieres = $filiereGetter->getGroups($uE->getFilieres());
+        $filieres = array_column($filieres, 'description');
+        $uE->setFilieres($filieres);
         return $this->render('ue/show.html.twig', [
             'ue' => $uE,
         ]);

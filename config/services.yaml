@@ -4,13 +4,24 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    LDAP_HOST: '%env(LDAP_HOST)%'
+    LDAP_PORT: '%env(LDAP_PORT)%'
+    LDAP_DN: '%env(LDAP_DN)%'
+    LDAP_USER_DN: '%env(LDAP_USER_DN)%'
+    LDAP_GROUP_DN: '%env(LDAP_GROUP_DN)%'
+    LDAP_USER_UID: '%env(LDAP_USER_UID)%'
+    LDAP_USER_PASSWORD: '%env(LDAP_USER_PASSWORD)%'
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+    App\Service\FiliereGetter:
+        arguments:
+            - $ParameterBagInterface: '@parameter_bag'
+            - $security : '@Symfony\Component\Security\Core\Security'
+        bind:
+            - string $host: '%LDAP_HOST%'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:

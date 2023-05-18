@@ -7,37 +7,39 @@
     <a href="{{ path('app_room_new') }}" class="btn btn-outline-primary">
         <i class="fa-sharp fa-regular fa-plus"></i>
     </a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Capacity</th>
-                <th>Type</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for room in rooms %}
-            <tr>
-                <td>{{ room.id }}</td>
-                <td>{{ room.name }}</td>
-                <td>{{ room.capacity }}</td>
-                <td>{{ room.type }}</td>
-                <td>
-                    <a href="{{ path('app_room_show', {'id': room.id}) }}" class="btn btn-outline-primary">
-                        Show <i class="fa-solid fa-eye"></i>
-                    </a>
-                    <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="btn btn-outline-warning">
-                        Edit <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Capacity</th>
+                    <th>Type</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.id }}</td>
+                    <td>{{ room.name }}</td>
+                    <td>{{ room.capacity }}</td>
+                    <td>{{ room.type }}</td>
+                    <td>
+                        <a href="{{ path('app_room_show', {'id': room.id}) }}" class="btn btn-outline-primary">
+                            Show <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="btn btn-outline-warning">
+                            Edit <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

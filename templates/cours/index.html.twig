@@ -6,39 +6,41 @@
     <a href="{{ path('app_cours_new') }}" class="btn btn-outline-primary">
         <i class="fa-sharp fa-regular fa-plus"></i>
     </a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Duration</th>
-                <th>Position</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cour in cours %}
-            <tr>
-                <td>{{ cour.id }}</td>
-                <td>{{ cour.name }}</td>
-                <td>{{ cour.type }}</td>
-                <td>{{ cour.duration|date('H:i:s') }}</td>
-                <td>{{ cour.position }}</td>
-                <td>
-                    <a href="{{ path('app_cours_show', {'id': cour.id}) }}" class="btn btn-outline-primary">
-                        Show <i class="fa-solid fa-eye"></i>
-                    </a>
-                    <a href="{{ path('app_cours_edit', {'id': cour.id}) }}" class="btn btn-outline-warning">
-                        Edit <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <section class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Duration</th>
+                    <th>Position</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cour in cours %}
+                <tr>
+                    <td>{{ cour.id }}</td>
+                    <td>{{ cour.name }}</td>
+                    <td>{{ cour.type }}</td>
+                    <td>{{ cour.duration|date('H:i:s') }}</td>
+                    <td>{{ cour.position }}</td>
+                    <td>
+                        <a href="{{ path('app_cours_show', {'id': cour.id}) }}" class="btn btn-outline-primary">
+                            Show <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="{{ path('app_cours_edit', {'id': cour.id}) }}" class="btn btn-outline-warning">
+                            Edit <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

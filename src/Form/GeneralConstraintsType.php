@@ -22,7 +22,7 @@ class GeneralConstraintsType extends AbstractType
             ->add('endHour', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'hours' => range(8, 18),
+                'hours' => range(7, 18),
                 'minutes' => range(0, 45, 15),
             ])
             ->add('breakDuration', TimeType::class, [

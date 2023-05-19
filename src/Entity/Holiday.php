@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\HolidayRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HolidayRepository::class)]
 class Holiday
@@ -18,6 +19,10 @@ class Holiday
     private ?string $type = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Expression(
+        expression: 'this.getBeginning() < this.getEnd()',
+        message: 'The beginning date must be before the end date',
+    )]
     private ?\DateTimeInterface $beginning = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

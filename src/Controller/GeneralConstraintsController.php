@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\PlanningGeneratorService;
 
 #[Route('/general-constraints')]
 class GeneralConstraintsController extends AbstractController
@@ -25,7 +26,11 @@ class GeneralConstraintsController extends AbstractController
     }
 
     #[Route('/edit', name: 'app_general_constraints_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    public function edit(
+        Request $request,
+        GeneralConstraintsRepository $generalConstraintsRepository,
+        PlanningGeneratorService $planningGeneratorService
+        ): Response
     {
         $generalConstraint = $generalConstraintsRepository->find(1);
         $form = $this->createForm(GeneralConstraintsType::class, $generalConstraint);
@@ -44,7 +49,12 @@ class GeneralConstraintsController extends AbstractController
     }
 
     #[Route('/new-holiday', name: 'app_holiday_new', methods: ['GET', 'POST'])]
-    public function newHoliday(Request $request, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    public function newHoliday(
+        Request $request,
+        HolidayRepository $holidayRepository,
+        GeneralConstraintsRepository $generalConstraintsRepository,
+        PlanningGeneratorService $planningGeneratorService
+        ): Response
     {
         $generalConstraint = $generalConstraintsRepository->find(1);
         $holiday = new Holiday();
@@ -68,7 +78,13 @@ class GeneralConstraintsController extends AbstractController
     }
 
     #[Route('/holiday/{id}/edit', name: 'app_holiday_edit', methods: ['GET', 'POST'])]
-    public function editHoliday(Request $request, Holiday $holiday, HolidayRepository $holidayRepository, GeneralConstraintsRepository $generalConstraintsRepository): Response
+    public function editHoliday(
+        Request $request,
+        Holiday $holiday,
+        HolidayRepository $holidayRepository,
+        GeneralConstraintsRepository $generalConstraintsRepository,
+        PlanningGeneratorService $planningGeneratorService
+        ): Response
     {
         $generalConstraint = $generalConstraintsRepository->find(1);
         $form = $this->createForm(HolidayType::class, $holiday);

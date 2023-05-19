@@ -27,6 +27,18 @@
                     <th>CourseMaxDuration</th>
                     <td>{{ general_constraints.courseMaxDuration ? general_constraints.courseMaxDuration|date('H:i:s') : '' }}</td>
                 </tr>
+                <tr>
+                    <th>CourseMinDuration</th>
+                    <td>{{ general_constraints.courseMinDuration ? general_constraints.courseMinDuration|date('H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>YearStartDate</th>
+                    <td>{{ general_constraints.yearStartDate ? general_constraints.yearStartDate|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>YearEndDate</th>
+                    <td>{{ general_constraints.yearEndDate ? general_constraints.yearEndDate|date('Y-m-d') : '' }}</td>
+                </tr>
             </tbody>
         </table>
     </section>

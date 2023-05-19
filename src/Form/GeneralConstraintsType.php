@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class GeneralConstraintsType extends AbstractType
 {
@@ -36,6 +37,20 @@ class GeneralConstraintsType extends AbstractType
                 'widget' => 'choice',
                 'hours' => range(1, 3),
                 'minutes' => range(0, 45, 15),
+            ])
+            ->add('courseMinDuration', TimeType::class, [
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'hours' => [1],
+                'minutes' => range(0, 45, 15),
+            ])
+            ->add('yearStartDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('yearEndDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
             ])
         ;
     }

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GeneralConstraintsRepository::class)]
 class GeneralConstraints
@@ -26,10 +27,27 @@ class GeneralConstraints
     private ?\DateTimeInterface $breakDuration = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    #[Assert\Expression(
+        expression: 'this.getCourseMinDuration() < this.getCourseMaxDuration()',
+        message: 'The course min duration must be lower than the course max duration',
+    )]
     private ?\DateTimeInterface $courseMaxDuration = null;
 
     #[ORM\OneToMany(mappedBy: 'generalConstraints', targetEntity: Holiday::class, orphanRemoval: true)]
     private Collection $holidays;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\Expression(
+        expression: 'this.getYearStartDate() < this.getYearEndDate()',
+        message: 'The year start date must be before the year end date',
+    )]
+    private ?\DateTimeInterface $yearStartDate = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $yearEndDate = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $courseMinDuration = null;
 
     public function __construct()
     {
@@ -115,6 +133,42 @@ class GeneralConstraints
                 $holiday->setGeneralConstraints(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getYearStartDate(): ?\DateTimeInterface
+    {
+        return $this->yearStartDate;
+    }
+
+    public function setYearStartDate(?\DateTimeInterface $yearStartDate): self
+    {
+        $this->yearStartDate = $yearStartDate;
+
+        return $this;
+    }
+
+    public function getYearEndDate(): ?\DateTimeInterface
+    {
+        return $this->yearEndDate;
+    }
+
+    public function setYearEndDate(?\DateTimeInterface $yearEndDate): self
+    {
+        $this->yearEndDate = $yearEndDate;
+
+        return $this;
+    }
+
+    public function getCourseMinDuration(): ?\DateTimeInterface
+    {
+        return $this->courseMinDuration;
+    }
+
+    public function setCourseMinDuration(?\DateTimeInterface $courseMinDuration): self
+    {
+        $this->courseMinDuration = $courseMinDuration;
 
         return $this;
     }

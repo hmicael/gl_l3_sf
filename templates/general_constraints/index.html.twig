@@ -9,10 +9,13 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>StartHour</th>
-                    <th>EndHour</th>
-                    <th>BreakDuration</th>
-                    <th>CourseMaxDuration</th>
+                    <th>Start Hour</th>
+                    <th>End Hour</th>
+                    <th>Break Duration</th>
+                    <th>Course Min Duration</th>
+                    <th>Course Max Duration</th>
+                    <th>Year Start Date</th>
+                    <th>Year End Date</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -23,7 +26,10 @@
                     <td>{{ general_constraint.startHour ? general_constraint.startHour|date('H:i:s') : '' }}</td>
                     <td>{{ general_constraint.endHour ? general_constraint.endHour|date('H:i:s') : '' }}</td>
                     <td>{{ general_constraint.breakDuration ? general_constraint.breakDuration|date('H:i:s') : '' }}</td>
+                    <td>{{ general_constraint.courseMinDuration ? general_constraint.courseMinDuration|date('H:i:s') : '' }}</td>
                     <td>{{ general_constraint.courseMaxDuration ? general_constraint.courseMaxDuration|date('H:i:s') : '' }}</td>
+                    <td>{{ general_constraint.yearStartDate ? general_constraint.yearStartDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ general_constraint.yearEndDate ? general_constraint.yearEndDate|date('Y-m-d') : '' }}</td>
                     <td>
                         <a href="{{ path('app_general_constraints_show', {'id': general_constraint.id}) }}">show</a>
                         <a href="{{ path('app_general_constraints_edit', {'id': general_constraint.id}) }}">edit</a>

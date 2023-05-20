@@ -15,13 +15,13 @@ class Slot
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $startHour = null;
+    private ?string $startHour = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $endHour = null;
+    private ?string $endHour = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?string $date = null;
 
     #[ORM\ManyToOne]
     private ?Room $room = null;
@@ -37,36 +37,36 @@ class Slot
         return $this->id;
     }
 
-    public function getStartHour(): ?\DateTimeInterface
+    public function getStartHour(): ?string
     {
         return $this->startHour;
     }
 
-    public function setStartHour(\DateTimeInterface $startHour): self
+    public function setStartHour(string $startHour): self
     {
         $this->startHour = $startHour;
 
         return $this;
     }
 
-    public function getEndHour(): ?\DateTimeInterface
+    public function getEndHour(): ?string
     {
         return $this->endHour;
     }
 
-    public function setEndHour(\DateTimeInterface $endHour): self
+    public function setEndHour(string $endHour): self
     {
         $this->endHour = $endHour;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(string $date): self
     {
         $this->date = $date;
 

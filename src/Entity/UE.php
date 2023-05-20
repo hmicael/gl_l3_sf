@@ -176,6 +176,12 @@ class UE
         return $this->cours;
     }
 
+    public function cleanCours(): void
+    {
+        $this->cours = new ArrayCollection();
+    }
+
+
     public function addCour(Cours $cour): bool
     {
         if (!$this->cours->contains($cour)) {

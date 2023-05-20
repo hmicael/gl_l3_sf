@@ -35,7 +35,7 @@ class UEType extends AbstractType
             
         $builder
             ->add('name')
-            ->add('startDate', DateType::class, ['label' => 'Start date'])
+            ->add('startDate', DateType::class, ['label' => 'Start date', 'widget' => 'single_text'])
             ->add('nbStudent', IntegerType::class, ['label' => 'Number of students'])
             ->add('nbGroup', IntegerType::class, ['label' => 'Number of groups'])
             ->add('nbCours', IntegerType::class, ['label' => 'Number of courses'])

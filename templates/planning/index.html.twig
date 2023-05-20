@@ -20,7 +20,7 @@
                     <td>{{ planning.description }}</td>
                     <td>{{ planning.semester }}</td>
                     <td>
-                        <a href="{{ path('app_planning_show', {'file': planning.filename}) }}" class="btn btn-outline-primary">Show <i class="fa-solid fa-eye"></i></a>
+                        <a href="{{ path('app_planning_show', {'file': planning.filename, 'filiere': planning.description|split(' ')|join('-')}) }}" class="btn btn-outline-primary">Show <i class="fa-solid fa-eye"></i></a>
                     </td>
                 </tr>
             {% else %}

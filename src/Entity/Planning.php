@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PlanningRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlanningRepository::class)]
@@ -23,6 +24,9 @@ class Planning
 
     #[ORM\Column(length: 15)]
     private ?string $groupId = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $week = null;
 
     public function __construct()
     {
@@ -84,6 +88,18 @@ class Planning
     public function setGroupId(string $groupId): self
     {
         $this->groupId = $groupId;
+
+        return $this;
+    }
+
+    public function getWeek(): ?\DateTimeInterface
+    {
+        return $this->week;
+    }
+
+    public function setWeek(?\DateTimeInterface $week): self
+    {
+        $this->week = $week;
 
         return $this;
     }

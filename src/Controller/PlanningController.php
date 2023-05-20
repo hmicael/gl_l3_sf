@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\GeneralConstraintsRepository;
 use App\Service\FiliereGetterService;
 use App\Service\PlanningGeneratorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class PlanningController extends AbstractController
 {
@@ -62,20 +64,44 @@ class PlanningController extends AbstractController
         ]);
     }
 
-    #[Route('/planning/{file}', name: 'app_planning_show')]
-    public function get($file, PlanningGeneratorService $planningGeneratorService): Response {
+    #[Route('/planning/{filiere}/{file}', name: 'app_planning_show')]
+    public function get(
+        $filiere,
+        $file,
+        PlanningGeneratorService $planningGeneratorService,
+        GeneralConstraintsRepository $generalConstraintsRepository,
+        SerializerInterface $serializer
+        ): Response {
         // TODO: vérifier si l'utilisateur a le droit de voir ce planning
+
         // Read the file
-        $location = $this->getParameter('kernel.project_dir') . '/public/planning/' . $file . '.json';
-        // if the file doesn't exist, return a 404
-        if (!file_exists($location)) {
-            throw $this->createNotFoundException('The file does not exist');
+        $filename = $this->getParameter('kernel.project_dir') . '/public/planning/' . $file . '.json';
+        $semester = explode('_', $file)[1] == 's1' ? '1' : '2';
+        $plannings = [];
+
+        // Get the timeslots
+        $generalConstraints = $generalConstraintsRepository->find(1);
+        $startHour = $generalConstraints->getStartHour();
+        $endHour = $generalConstraints->getEndHour();
+        $interval = new \DateInterval('PT15M'); // 15 minutes interval
+        $timePeriod = new \DatePeriod($startHour, $interval, $endHour);
+        $times = [];
+        foreach ($timePeriod as $time) {
+            $times[] = $time;
         }
-        $file = file_get_contents($location);
+
+        // if the file doesn't exist, we generate it
+        if (! file_exists($filename)) {
+            $plannings = $planningGeneratorService->loadPlanning($filename, $semester);
+        } else {
+            $plannings = json_decode(file_get_contents($filename), true);
+        }
         
         return $this->render('planning/show.html.twig', [
             'controller_name' => 'Planning Show',
-            'planning' => $file,
+            'plannings' => $plannings,
+            'timeslots' => $times,
+            'filiere' => $filiere,
         ]);
     }
     public function generatePlanning(): Response

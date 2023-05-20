@@ -3,9 +3,46 @@
 {% block title %}Hello PlanningController!{% endblock %}
 
 {% block body %}
-    <h1>Planning index</h1>
-
-    <section class="table-responsive">
-        {{ planning }}
-    </section>
+    <h1>Planning {{ filiere|split('-')|join(' ') }}</h1>
+    <div class="accordion" id="accordion-planning">
+        {% for planning in plannings%}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="{{ planning.week | date('d-m-Y') }}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ planning.week | date('d-m-Y') }}" aria-expanded="false" aria-controls="collapse-{{ planning.week | date('d-m-Y') }}">
+                        Semaine du {{ planning.week | date('d-m-Y') }}
+                    </button>
+                </h2>
+                <div id="collapse-{{ planning.week | date('d-m-Y') }}" class="accordion-collapse collapse show" aria-labelledby="{{ planning.week | date('d-m-Y') }}" data-bs-parent="#accordion-planning">
+                    <div class="accordion-body">
+                        <table class="table table-hover table-bordered text-center">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Hours</th>
+                                    <th scope="col">Monday</th>
+                                    <th scope="col">Tuesday</th>
+                                    <th scope="col">Wednesday</th>
+                                    <th scope="col">Thursday</th>
+                                    <th scope="col">Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for hours, slots in planning.slots%}
+                                <tr>
+                                    <td>{{hours | date('H:i')}}</td>
+                                    {% for slot in slots %}
+                                    <td>
+                                        {{ slot.cours.uE.name }} <br>
+                                        {{ slot.cours.name }} <br>
+                                        {{ slot.room.name }} <br>
+                                    </td>
+                                    {% endfor %}
+                                {% endfor %}
+                                </tr>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

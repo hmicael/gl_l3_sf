@@ -36,18 +36,28 @@ class GeneralConstraints
     #[ORM\OneToMany(mappedBy: 'generalConstraints', targetEntity: Holiday::class, orphanRemoval: true)]
     private Collection $holidays;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\Expression(
-        expression: 'this.getYearStartDate() < this.getYearEndDate()',
-        message: 'The year start date must be before the year end date',
-    )]
-    private ?\DateTimeInterface $yearStartDate = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $yearEndDate = null;
-
     #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $courseMinDuration = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\Expression(
+        expression: 'this.getSemesterOneStart() < this.getSemesterOneEnd()',
+        message: 'The semester one start date must be before the semester one end date',
+    )]
+    private ?\DateTimeInterface $semesterOneStart = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $semesterOneEnd = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\Expression(
+        expression: 'this.getSemesterTwoStart() < this.getSemesterTwoEnd()',
+        message: 'The semester two start date must be before the semester two end date',
+    )]
+    private ?\DateTimeInterface $semesterTwoStart = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $semesterTwoEnd = null;
 
     public function __construct()
     {
@@ -137,30 +147,6 @@ class GeneralConstraints
         return $this;
     }
 
-    public function getYearStartDate(): ?\DateTimeInterface
-    {
-        return $this->yearStartDate;
-    }
-
-    public function setYearStartDate(?\DateTimeInterface $yearStartDate): self
-    {
-        $this->yearStartDate = $yearStartDate;
-
-        return $this;
-    }
-
-    public function getYearEndDate(): ?\DateTimeInterface
-    {
-        return $this->yearEndDate;
-    }
-
-    public function setYearEndDate(?\DateTimeInterface $yearEndDate): self
-    {
-        $this->yearEndDate = $yearEndDate;
-
-        return $this;
-    }
-
     public function getCourseMinDuration(): ?\DateTimeInterface
     {
         return $this->courseMinDuration;
@@ -169,6 +155,54 @@ class GeneralConstraints
     public function setCourseMinDuration(?\DateTimeInterface $courseMinDuration): self
     {
         $this->courseMinDuration = $courseMinDuration;
+
+        return $this;
+    }
+
+    public function getSemesterOneStart(): ?\DateTimeInterface
+    {
+        return $this->semesterOneStart;
+    }
+
+    public function setSemesterOneStart(?\DateTimeInterface $semesterOneStart): self
+    {
+        $this->semesterOneStart = $semesterOneStart;
+
+        return $this;
+    }
+
+    public function getSemesterOneEnd(): ?\DateTimeInterface
+    {
+        return $this->semesterOneEnd;
+    }
+
+    public function setSemesterOneEnd(?\DateTimeInterface $semesterOneEnd): self
+    {
+        $this->semesterOneEnd = $semesterOneEnd;
+
+        return $this;
+    }
+
+    public function getSemesterTwoStart(): ?\DateTimeInterface
+    {
+        return $this->semesterTwoStart;
+    }
+
+    public function setSemesterTwoStart(?\DateTimeInterface $semesterTwoStart): self
+    {
+        $this->semesterTwoStart = $semesterTwoStart;
+
+        return $this;
+    }
+
+    public function getSemesterTwoEnd(): ?\DateTimeInterface
+    {
+        return $this->semesterTwoEnd;
+    }
+
+    public function setSemesterTwoEnd(?\DateTimeInterface $semesterTwoEnd): self
+    {
+        $this->semesterTwoEnd = $semesterTwoEnd;
 
         return $this;
     }

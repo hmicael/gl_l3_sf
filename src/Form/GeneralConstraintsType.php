@@ -44,11 +44,19 @@ class GeneralConstraintsType extends AbstractType
                 'hours' => [1],
                 'minutes' => range(0, 45, 15),
             ])
-            ->add('yearStartDate', DateType::class, [
+            ->add('semesterOneStart', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
-            ->add('yearEndDate', DateType::class, [
+            ->add('semesterOneEnd', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('semesterTwoStart', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('semesterTwoEnd', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])

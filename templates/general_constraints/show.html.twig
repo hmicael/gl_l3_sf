@@ -32,12 +32,20 @@
                     <td>{{ general_constraints.courseMinDuration ? general_constraints.courseMinDuration|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>YearStartDate</th>
-                    <td>{{ general_constraints.yearStartDate ? general_constraints.yearStartDate|date('Y-m-d') : '' }}</td>
+                    <th>SemesterOneStart</th>
+                    <td>{{ general_constraints.semesterOneStart ? general_constraints.semesterOneStart|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>YearEndDate</th>
-                    <td>{{ general_constraints.yearEndDate ? general_constraints.yearEndDate|date('Y-m-d') : '' }}</td>
+                    <th>SemesterOneEnd</th>
+                    <td>{{ general_constraints.semesterOneEnd ? general_constraints.semesterOneEnd|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>SemesterTwoStart</th>
+                    <td>{{ general_constraints.semesterTwoStart ? general_constraints.semesterTwoStart|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>SemesterTwoEnd</th>
+                    <td>{{ general_constraints.semesterTwoEnd ? general_constraints.semesterTwoEnd|date('Y-m-d') : '' }}</td>
                 </tr>
             </tbody>
         </table>

@@ -26,22 +26,28 @@ class GeneralConstraintsType extends AbstractType
                 'hours' => range(7, 18),
                 'minutes' => range(0, 45, 15),
             ])
-            ->add('breakDuration', TimeType::class, [
+            ->add('breakStartHour', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'hours' => range(0, 2),
+                'hours' => range(11, 14),
                 'minutes' => range(0, 45, 15),
             ])
-            ->add('courseMaxDuration', TimeType::class, [
+            ->add('breakEndHour', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
-                'hours' => range(1, 3),
+                'hours' => range(11, 14),
                 'minutes' => range(0, 45, 15),
             ])
             ->add('courseMinDuration', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
                 'hours' => [1],
+                'minutes' => range(0, 45, 15),
+            ])
+            ->add('courseMaxDuration', TimeType::class, [
+                'input'  => 'datetime',
+                'widget' => 'choice',
+                'hours' => range(1, 3),
                 'minutes' => range(0, 45, 15),
             ])
             ->add('semesterOneStart', DateType::class, [

@@ -32,6 +32,14 @@ class Holiday
     #[ORM\JoinColumn(nullable: false)]
     private ?GeneralConstraints $generalConstraints = null;
 
+    #[ORM\Column]
+    #[Assert\Range(
+        min: 1,
+        max: 2,
+        notInRangeMessage: 'Semester must be 1 or 2',
+    )]
+    private ?int $semester = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +89,18 @@ class Holiday
     public function setGeneralConstraints(?GeneralConstraints $generalConstraints): self
     {
         $this->generalConstraints = $generalConstraints;
+
+        return $this;
+    }
+
+    public function getSemester(): ?int
+    {
+        return $this->semester;
+    }
+
+    public function setSemester(int $semester): self
+    {
+        $this->semester = $semester;
 
         return $this;
     }

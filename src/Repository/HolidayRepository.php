@@ -39,6 +39,18 @@ class HolidayRepository extends ServiceEntityRepository
         }
     }
 
+    public function getExams($semester): array
+    {
+        $exam = 'exam';
+        return $this->createQueryBuilder('h')
+            ->andWhere('h.semester = :semester')
+            ->setParameter('semester', $semester)
+            ->andWhere('h.type = :exam')
+            ->setParameter('exam', $exam)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Holiday[] Returns an array of Holiday objects
 //     */

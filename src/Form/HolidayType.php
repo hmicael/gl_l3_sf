@@ -28,6 +28,12 @@ class HolidayType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ])
+            ->add('semester', ChoiceType::class, [
+                'choices'  => [
+                    '1' => '1',
+                    '2' => '2',
+                ],
+            ])
             // ->add('generalConstraints')
         ;
     }

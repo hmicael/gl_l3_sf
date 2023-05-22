@@ -38,6 +38,9 @@ class Cours
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?UE $uE = null;
 
+    #[ORM\Column]
+    private ?int $semester = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +102,18 @@ class Cours
     public function setDuration(\DateTimeInterface $duration): self
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getSemester(): ?int
+    {
+        return $this->semester;
+    }
+
+    public function setSemester(int $semester): self
+    {
+        $this->semester = $semester;
 
         return $this;
     }

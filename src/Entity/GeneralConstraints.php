@@ -24,9 +24,6 @@ class GeneralConstraints
     private ?\DateTimeInterface $endHour = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $breakDuration = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
     #[Assert\Expression(
         expression: 'this.getCourseMinDuration() < this.getCourseMaxDuration()',
         message: 'The course min duration must be lower than the course max duration',
@@ -59,6 +56,16 @@ class GeneralConstraints
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $semesterTwoEnd = null;
 
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[Assert\Expression(
+        expression: 'this.getBreakStartHour() < this.getBreakEndHour()',
+        message: 'The break start hour must be before the break end hour',
+    )]
+    private ?\DateTimeInterface $breakStartHour = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $breakEndHour = null;
+
     public function __construct()
     {
         $this->holidays = new ArrayCollection();
@@ -89,18 +96,6 @@ class GeneralConstraints
     public function setEndHour(\DateTimeInterface $endHour): self
     {
         $this->endHour = $endHour;
-
-        return $this;
-    }
-
-    public function getBreakDuration(): ?\DateTimeInterface
-    {
-        return $this->breakDuration;
-    }
-
-    public function setBreakDuration(\DateTimeInterface $breakDuration): self
-    {
-        $this->breakDuration = $breakDuration;
 
         return $this;
     }
@@ -203,6 +198,30 @@ class GeneralConstraints
     public function setSemesterTwoEnd(?\DateTimeInterface $semesterTwoEnd): self
     {
         $this->semesterTwoEnd = $semesterTwoEnd;
+
+        return $this;
+    }
+
+    public function getBreakStartHour(): ?\DateTimeInterface
+    {
+        return $this->breakStartHour;
+    }
+
+    public function setBreakStartHour(?\DateTimeInterface $breakStartHour): self
+    {
+        $this->breakStartHour = $breakStartHour;
+
+        return $this;
+    }
+
+    public function getBreakEndHour(): ?\DateTimeInterface
+    {
+        return $this->breakEndHour;
+    }
+
+    public function setBreakEndHour(?\DateTimeInterface $breakEndHour): self
+    {
+        $this->breakEndHour = $breakEndHour;
 
         return $this;
     }

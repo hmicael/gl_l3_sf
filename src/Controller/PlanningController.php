@@ -35,6 +35,7 @@ class PlanningController extends AbstractController
         }
 
         $filieres = $FiliereGetterService->getGroups();
+        
         // here, we check if there is a planning for each filiere of the current user
         foreach ($filieres as $filiere) {
             $filename_s1 = $filiere['cn'] . '_s1.json';
@@ -100,11 +101,11 @@ class PlanningController extends AbstractController
         return $this->render('planning/show.html.twig', [
             'controller_name' => 'Planning Show',
             'plannings' => $plannings,
-            'timeslots' => $times,
-            'filiere' => $filiere,
+            'filiere' => str_replace('-', ' ', $filiere),
+            'semester' => $semester,
         ]);
     }
-    public function generatePlanning(): Response
+    public function loadPlanning(): Response
     {
         return $this->render('planning/index.html.twig', [
             'controller_name' => 'PlanningController',

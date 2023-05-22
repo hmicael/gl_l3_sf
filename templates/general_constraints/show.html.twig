@@ -12,39 +12,43 @@
         <table class="table">
             <tbody>
                 <tr>
-                    <th>StartHour</th>
+                    <th>Day Start Hour</th>
                     <td>{{ general_constraints.startHour ? general_constraints.startHour|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>EndHour</th>
+                    <th>Day End Hour</th>
                     <td>{{ general_constraints.endHour ? general_constraints.endHour|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>BreakDuration</th>
-                    <td>{{ general_constraints.breakDuration ? general_constraints.breakDuration|date('H:i:s') : '' }}</td>
+                    <th>Break End Hour</th>
+                    <td>{{ general_constraints.breakStartHour ? general_constraints.breakStartHour|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>CourseMaxDuration</th>
-                    <td>{{ general_constraints.courseMaxDuration ? general_constraints.courseMaxDuration|date('H:i:s') : '' }}</td>
+                    <th>Break End Hour</th>
+                    <td>{{ general_constraints.breakEndHour ? general_constraints.breakEndHour|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>CourseMinDuration</th>
+                    <th>Course Min Duration</th>
                     <td>{{ general_constraints.courseMinDuration ? general_constraints.courseMinDuration|date('H:i:s') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>SemesterOneStart</th>
+                    <th>Course Max Duration</th>
+                    <td>{{ general_constraints.courseMaxDuration ? general_constraints.courseMaxDuration|date('H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Semester One Start</th>
                     <td>{{ general_constraints.semesterOneStart ? general_constraints.semesterOneStart|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>SemesterOneEnd</th>
+                    <th>Semester One End</th>
                     <td>{{ general_constraints.semesterOneEnd ? general_constraints.semesterOneEnd|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>SemesterTwoStart</th>
+                    <th>Semester Two Start</th>
                     <td>{{ general_constraints.semesterTwoStart ? general_constraints.semesterTwoStart|date('Y-m-d') : '' }}</td>
                 </tr>
                 <tr>
-                    <th>SemesterTwoEnd</th>
+                    <th>Semester Two End</th>
                     <td>{{ general_constraints.semesterTwoEnd ? general_constraints.semesterTwoEnd|date('Y-m-d') : '' }}</td>
                 </tr>
             </tbody>

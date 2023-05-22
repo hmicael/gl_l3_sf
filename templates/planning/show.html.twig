@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlanningController!{% endblock %}
+{% block title %}Planning {{ filiere }} - Semester {{ semester }}{% endblock %}
 
 {% block body %}
-    <h1>Planning {{ filiere|split('-')|join(' ') }}</h1>
+    <h1>Planning {{ filiere }} - Semester {{ semester }}</h1>
     <div class="accordion" id="accordion-planning">
-        {% for planning in plannings%}
+        {% for week, planning in plannings%}
             <div class="accordion-item">
-                <h2 class="accordion-header" id="{{ planning.week | date('d-m-Y') }}">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ planning.week | date('d-m-Y') }}" aria-expanded="false" aria-controls="collapse-{{ planning.week | date('d-m-Y') }}">
-                        Semaine du {{ planning.week | date('d-m-Y') }}
+                <h2 class="accordion-header" id="id-{{ week }}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-id-{{ week }}" aria-expanded="false" aria-controls="collapse-id-{{ week }}">
+                        {% set dates = planning|keys %}
+
+                        Semaine du {{ dates[0] }}
                     </button>
                 </h2>
-                <div id="collapse-{{ planning.week | date('d-m-Y') }}" class="accordion-collapse collapse show" aria-labelledby="{{ planning.week | date('d-m-Y') }}" data-bs-parent="#accordion-planning">
+                <div id="collapse-id-{{ week }}" class="accordion-collapse collapse show" aria-labelledby="id-{{ week }}" data-bs-parent="#accordion-planning">
                     <div class="accordion-body">
                         <table class="table table-hover table-bordered text-center">
                             <thead class="table-dark">
                                 <tr>
-                                    <th scope="col">Hours</th>
-                                    <th scope="col">Monday</th>
-                                    <th scope="col">Tuesday</th>
-                                    <th scope="col">Wednesday</th>
-                                    <th scope="col">Thursday</th>
-                                    <th scope="col">Friday</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for hours, slots in planning.slots%}
+                                {% for date, slots in planning%}
                                 <tr>
-                                    <td>{{hours | date('H:i')}}</td>
+                                    <td>{{ date }}</td>
                                     {% for slot in slots %}
                                     <td>
                                         {{ slot.cours.uE.name }} <br>
                                         {{ slot.cours.name }} <br>
                                         {{ slot.room.name }} <br>
+                                        {{ slot.startHour | date('H:i') }} - {{ slot.endHour | date('H:i') }}
                                     </td>
                                     {% endfor %}
                                 {% endfor %}

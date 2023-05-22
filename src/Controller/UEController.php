@@ -104,7 +104,7 @@ class UEController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($uE->addCour($cour)) {
                 $uE->setConstraintsApplied(false);
-
+                $cour->setSemester($uE->getSemester());
                 $coursRepository->save($cour, true);
                 $uERepository->save($uE, true);
 
@@ -171,13 +171,22 @@ class UEController extends AbstractController
     }
 
     #[Route('/{id}/apply-constraint', name: 'app_ue_apply_constraint', methods: ['POST'])]
-    public function applyConstraint(Request $request, UE $uE, UERepository $uERepository, PlanningGeneratorService $planningGeneratorService): Response
+    public function applyConstraint(
+        Request $request,
+        UE $uE, UERepository
+        $uERepository,
+        PlanningGeneratorService $planningGeneratorService
+    ): Response
     {
         if ($this->isCsrfTokenValid('apply_constraint'.$uE->getId(), $request->request->get('_token'))) {
             $uE->setConstraintsApplied(true);
             $uERepository->save($uE, true);
         }
-        // TODO: generate planning
+        
+        foreach($uE->getFilieres() as $filiere) {
+            $filename = $this->getParameter('kernel.project_dir') . '/public/planning/' . $filiere . '_s'. $uE->getSemester() . '.json';
+            $planningGeneratorService->loadPlanning($filename, $uE->getSemester());
+        }
 
         return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
     }

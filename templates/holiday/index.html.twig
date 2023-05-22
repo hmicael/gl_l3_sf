@@ -13,6 +13,7 @@
                     <th>Type</th>
                     <th>Beginning</th>
                     <th>End</th>
+                    <th>Semester</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                     <td>{{ holiday.type }}</td>
                     <td>{{ holiday.beginning ? holiday.beginning|date('Y-m-d') : '' }}</td>
                     <td>{{ holiday.end ? holiday.end|date('Y-m-d') : '' }}</td>
+                    <td>{{ ue.semester }}</td>
                     <td>
                         <a href="{{ path('app_holiday_show', {'id': holiday.id}) }}">show</a>
                         <a href="{{ path('app_holiday_edit', {'id': holiday.id}) }}">edit</a>

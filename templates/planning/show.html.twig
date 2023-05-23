@@ -20,10 +20,7 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th scope="col">Date</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                                    <th scope="col" colspan="4">Cours</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,7 +30,7 @@
                                     {% for slot in slots %}
                                     <td>
                                         {{ slot.cours.uE.name }} <br>
-                                        {{ slot.cours.name }} <br>
+                                        {{ slot.cours.type }} <br>
                                         {{ slot.room.name }} <br>
                                         {{ slot.startHour | date('H:i') }} - {{ slot.endHour | date('H:i') }}
                                     </td>

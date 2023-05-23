@@ -74,7 +74,7 @@ class UEController extends AbstractController
             $uE->setConstraintsApplied(false);
             $uERepository->save($uE, true);
 
-            return $this->redirectToRoute('app_ue_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_ue_show', ['id' => $uE->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('ue/edit.html.twig', [

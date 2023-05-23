@@ -83,7 +83,7 @@ class PlanningGeneratorService {
             'lunch_end_hour' => $generalConstraints->getBreakEndHour()->format('H:i')
         ];
         foreach ($this->roomRepository->findAll() as $room) {
-            $data['classrooms'] = [
+            $data['classrooms'][] = [
                 'id' => $room->getId(),
                 'capacity' => $room->getCapacity(),
                 'session_types' => [$room->getType()],
@@ -111,7 +111,7 @@ class PlanningGeneratorService {
                     'size' => $nStudentPerGroup
                 ];
             }
-            $data['courses'] = [
+            $data['courses'][] = [
                 'id' => $ue->getId(),
                 'course_start' => $ue->getStartDate()->format('d/m/Y'),
                 'studentsPerGroup' => $groups
@@ -120,7 +120,7 @@ class PlanningGeneratorService {
                 $timeString = $cours->getDuration()->format('H:i');
                 list($hours, $minutes) = explode(':', $timeString); // Split the time string into hours and minutes
                 $totalMinutes = (int)$hours * 60 + (int)$minutes;
-                $data['order_position'] = [
+                $data['order_position'][] = [
                     'order_position' => $cours->getPosition(),
                     'session_type' => $cours->getType(),
                     'course_id' => $ue->getId(),
@@ -157,13 +157,13 @@ class PlanningGeneratorService {
                     'start_time' => DateTimeImmutable::createFromFormat('H:i', '14:00'),
                     'end_time' => DateTimeImmutable::createFromFormat('H:i', '15:30'),
                     'room_id' => 1,
-                    'course_id' => 6,
+                    'course_id' => 7,
                 ],
                 [
                     'start_time' => DateTimeImmutable::createFromFormat('H:i', '16:00'),
                     'end_time' => DateTimeImmutable::createFromFormat('H:i', '17:30'),
                     'room_id' => 1,
-                    'course_id' => 6,
+                    'course_id' => 8,
                 ]
             ];
         }
